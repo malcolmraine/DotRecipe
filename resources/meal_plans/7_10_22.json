@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "created_at": "2022-07-02 17:15:04",
+    "updated_at": "2022-07-02 17:15:04"
+  },
+  "id": 1,
+  "title": "Plan One",
+  "description": "test",
+  "meals": {
+    "sunday": [{
+      "id": 1,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "monday": [{
+      "id": 2,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "tuesday": [{
+      "id": 3,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "wednesday": [{
+      "id": 4,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "thursday": [{
+      "id": 5,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "friday": [{
+      "id": 6,
+      "title": "Cobb Salad",
+      "notes": ""
+    }],
+    "saturday": [{
+      "id": 7,
+      "title": "Cobb Salad",
+      "notes": ""
+    }]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "created_at": "2022-07-02 17:15:04",
+    "updated_at": "2022-07-02 17:15:04"
+  },
+  "id": 2,
+  "title": "Cobb Salad",
+  "description": "test",
+  "category": "Salad",
+  "ingredients": [
+    {
+      "name": "Eggs",
+      "qty": "3",
+      "description": "From chickens"
+    },
+        {
+      "name": "Paprika",
+      "qty": "1 1/4 tbsp",
+      "description": "red spice"
+    }
+  ],
+  "est_prep_time": 0,
+  "est_cook_time": 0,
+  "default_serving_qty": 1,
+  "notes": "",
+  "image": "resources/images/cobb_salad.jpeg",
+  "instructions": [
+    "Turn on the stove",
+    "Cook food"
+  ],
+  "source": "Pinterest"
+}
