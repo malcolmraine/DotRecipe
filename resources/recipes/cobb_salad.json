@@ -10,23 +10,23 @@
     "ingredients": [
         {
             "name": "Paprika",
-            "description": "red spice",
-            "qty": "3 3/4 tbsp"
+            "description": "Red spice",
+            "qty": "15 tbsp"
         },
         {
             "name": "Eggs",
             "description": "From chickens",
-            "qty": "4 cnt"
+            "qty": "16 cnt"
         },
         {
             "name": "Onions",
             "description": "Vegetable",
-            "qty": "2 1/2 cnt"
+            "qty": "1 cnt"
         }
     ],
     "est_prep_time": 0,
     "est_cook_time": 0,
-    "default_serving_qty": 3,
+    "default_serving_qty": 4,
     "notes": "",
     "image": "resources/images/cobb_salad.jpeg",
     "instructions": [

@@ -39,13 +39,15 @@ class IngredientItemModel(QStandardItemModel):
         if col == AMOUNT_COL_IDX:
             ingredient.qty.from_nl_string(value)
             return super(IngredientItemModel, self).setData(index, ingredient.qty.as_fraction_string(), role)
-        elif col == NAME_COL_IDX:
-            ingredient.name = value
-            return super(IngredientItemModel, self).setData(index, value, role)
-        elif col == NOTE_COL_IDX:
-            return super(IngredientItemModel, self).setData(index, value, role)
+        else:
+            value = value[0].upper() + value[1:]
 
-        return False
+            if col == NAME_COL_IDX:
+                ingredient.name = value
+            elif col == NOTE_COL_IDX:
+                ingredient.description = value
+
+            return super(IngredientItemModel, self).setData(index, value, role)
 
     def toFractionPres(self, index: QtCore.QModelIndex) -> bool:
         recipe = self.state.active_recipe
@@ -79,6 +81,8 @@ class IngredientsList(BaseGuiModel):
         self.remove_ingredient_btn.setToolTip(config.get_tooltip("remove_ingredient_button"))
         self.metric_units_radio_btn = EMGRadioButton("Metric")
         self.us_units_radio_btn = EMGRadioButton("US", checked=True)
+        self.us_units_radio_btn.clicked.connect(self.change_to_fraction_pres)
+        self.metric_units_radio_btn.clicked.connect(self.change_to_decimal_pres)
 
         self.lower_layout = QHBoxLayout()
         self.button_layout = QHBoxLayout()
@@ -105,6 +109,14 @@ class IngredientsList(BaseGuiModel):
         self.lower_layout.addLayout(self.button_layout)
         self.lower_layout.addLayout(self.servings_layout)
         self.list_layout.addLayout(self.lower_layout)
+
+    def change_to_fraction_pres(self):
+        for row in range(self.model.rowCount()):
+            ...
+            # self.model.setDa
+
+    def change_to_decimal_pres(self):
+        ...
 
     @staticmethod
     def make_listview():
@@ -145,7 +157,6 @@ class IngredientsList(BaseGuiModel):
         self.state.active_recipe.ingredients.append(ingredient)
         self.insert_row_at_end(["0", "New Ingredient", ""])
 
-
     def remove_ingredient(self):
         selected_indexes = self.list_view.selectedIndexes()
 
@@ -160,6 +171,8 @@ class IngredientsList(BaseGuiModel):
                 ingredient.name,
                 ingredient.description
             ])
+        self.servings_line_edit.setText(str(self.state.active_recipe.default_serving_qty))
 
     def clear_listview_rows(self):
         self.model.removeRows(0, self.model.rowCount())
+        self.servings_line_edit.setText("0")

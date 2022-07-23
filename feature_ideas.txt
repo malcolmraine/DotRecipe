@@ -4,3 +4,5 @@
 
 - # of servings per recipe
 - Converting ingredient amounts per # of servings
+
+- need to keep state for previous recipes when switchign between them

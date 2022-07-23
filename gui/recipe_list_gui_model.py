@@ -107,7 +107,7 @@ class RecipeListGuiModel(BaseGuiModel):
     def add_recipe_to_table(self, recipe: Recipe):
         self.model.appendRow(RecipeListItem(recipe))
         # self.model.setData(self.model.index(0, 0), title)
-        # self.model.setData(self.model.index(0, 1), mod_data)
+        self.model.setData(self.model.index(self.model.rowCount() - 1, 1), recipe.primary_category.value)
 
     def new_recipe(self):
         recipe = Recipe()

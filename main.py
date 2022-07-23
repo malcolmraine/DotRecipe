@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QToolButton,
                              QComboBox,
                              QListView,
-                             QTreeView)
+                             QTreeView, QMenu, QMainWindow)
 from gui.instructions_gui_model import InstructionsGuiModel
 from gui.ingredients_gui_model import CenterPanelComponent
 from gui.recipe_list_gui_model import RecipeListGuiModel
@@ -95,5 +95,14 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(config.APP_ICON))
     app.setStyle("Breeze")
-    ex = App()
+    main_window = QMainWindow()
+    menu_bar = main_window.menuBar()
+    menu_bar.addMenu("&File")
+    menu_bar.addMenu("&Edit")
+    menu_bar.addMenu("&View")
+    menu_bar.addMenu("&About")
+    main_layout = QVBoxLayout()
+    main_layout.addWidget(App())
+
+    ex = main_window
     sys.exit(app.exec_())

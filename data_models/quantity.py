@@ -23,6 +23,7 @@ class Unit(Enum):
 class UnitFactory(object):
     alternate_spellings = {
         "tablespoon": "tbsp",
+        "tablespoons": "tbsp",
         "teaspoon": "tsp",
         "pound": "lb",
         "count": "cnt"
@@ -41,6 +42,8 @@ class Quantity(object):
         self._qty = value
         self._unit: Unit = Unit.DEFAULT
         self.mode = "us"
+        self._base_display_str = ""
+        self.use_base_display = False
 
     def __str__(self):
         return f"{self.float_to_fraction(self._qty)} {self._unit.value}"
@@ -104,18 +107,18 @@ class Quantity(object):
     def is_int_str(self, value: str):
         return value.isnumeric()
 
-    def from_nl_string(self, s: str):
+    def _from_nl_string(self, s: str):
         """
-        Parse from a string that follows a set format.
+               Parse from a string that follows a set format.
 
-        [int|float]
+               [int|float]
 
-        :param s:
-        :return:
-        """
+               :param s:
+               :return:
+               """
         # Convert all whitespace to " "
-        s = s.replace("\t", "")\
-            .replace("\n", " ")\
+        s = s.replace("\t", "") \
+            .replace("\n", " ") \
             .replace("\r", " ")
         s = trim(s.lower())
         qty_set = False
@@ -155,7 +158,20 @@ class Quantity(object):
 
             return Quantity.fraction_to_float(qty_str), unit_str
 
+    def from_nl_string(self, s: str):
+        self._base_display_str = s
+        self.use_base_display = False
+        try:
+            out = self._from_nl_string(s)
+            return out
+        except:
+            self._base_display_str = s
+            self.use_base_display = True
+            return self._base_display_str
+
     def as_fraction_string(self):
+        if self.use_base_display:
+            return self._base_display_str
         return f"{self.float_to_fraction(self._qty)} {self._unit.value}"
 
     def as_float_string(self):
