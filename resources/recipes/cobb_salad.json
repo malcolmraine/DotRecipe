@@ -1,32 +1,39 @@
 {
-  "metadata": {
-    "created_at": "2022-07-02 17:15:04",
-    "updated_at": "2022-07-02 17:15:04"
-  },
-  "id": 2,
-  "title": "Cobb Salad",
-  "description": "test",
-  "category": "Salad",
-  "ingredients": [
-    {
-      "name": "Eggs",
-      "qty": "3",
-      "description": "From chickens"
+    "metadata": {
+        "created_at": "2022-07-02 17:15:04",
+        "updated_at": "2022-07-02 17:15:04"
     },
+    "id": 2,
+    "title": "Cobb Salad",
+    "description": "test",
+    "category": "Salad",
+    "ingredients": [
         {
-      "name": "Paprika",
-      "qty": "1 1/4 tbsp",
-      "description": "red spice"
-    }
-  ],
-  "est_prep_time": 0,
-  "est_cook_time": 0,
-  "default_serving_qty": 1,
-  "notes": "",
-  "image": "resources/images/cobb_salad.jpeg",
-  "instructions": [
-    "Turn on the stove",
-    "Cook food"
-  ],
-  "source": "Pinterest"
+            "name": "Paprika",
+            "description": "red spice",
+            "qty": "3 3/4 tbsp"
+        },
+        {
+            "name": "Eggs",
+            "description": "From chickens",
+            "qty": "4 cnt"
+        },
+        {
+            "name": "Onions",
+            "description": "Vegetable",
+            "qty": "2 1/2 cnt"
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": 3,
+    "notes": "",
+    "image": "resources/images/cobb_salad.jpeg",
+    "instructions": [
+        "Turn on the stove1",
+        "Cook food",
+        "Serve food",
+        "cleanup"
+    ],
+    "source": "Pinterest"
 }

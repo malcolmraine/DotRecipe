@@ -14,13 +14,13 @@ from PyQt5.QtWidgets import (QApplication,
                              QListView,
                              QTreeView,
                              QGroupBox)
-# from gui_models.instructions_gui_model import InstructionsGuiModel
-# from gui_models.ingredients_gui_model import IngredientsGuiModel
-# from gui_models.recipe_list_gui_model import RecipeListGuiModel
+# from gui.instructions_gui_model import InstructionsGuiModel
+# from gui.ingredients_gui_model import IngredientsGuiModel
+# from gui.recipe_list_gui_model import RecipeListGuiModel
 import config
 from support import gui_helpers
 import os
-from gui_models.base_gui_model import BaseGuiModel
+from gui.base_gui_model import BaseGuiModel
 
 
 class MealPlanGuiModel(BaseGuiModel):

@@ -34,7 +34,7 @@ class Recipe(JsonModel):
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "category": self.primary_category.value(),
+            "category": self.primary_category.value,
             "ingredients": [ingredient.to_dict() for ingredient in self.ingredients],
             "est_prep_time": self.est_prep_time,
             "est_cook_time": self.est_cook_time,
@@ -46,7 +46,7 @@ class Recipe(JsonModel):
         }
 
     def to_json(self):
-        return json.dumps(self.to_dict())
+        return json.dumps(self.to_dict(), indent=4)
 
     def from_dict(self, d):
         self.created_at = d["metadata"]["created_at"]
@@ -63,8 +63,6 @@ class Recipe(JsonModel):
         self.instructions = d["instructions"]
         self.source = d["source"]
         self.id = d["id"]
-
-        print(self.__dict__)
 
     def from_json(self, s):
         obj = json.loads(s)

@@ -7,6 +7,7 @@ from PIL import Image
 import random
 from support import path_helpers
 import config
+from PyQt5.QtCore import Qt
 
 
 class RecipeImage(QLabel):
@@ -16,8 +17,9 @@ class RecipeImage(QLabel):
         self._text = None
         self.setAcceptDrops(True)
         self.setPixmap(QPixmap(self.text()))
-        self.image_save_name = f"unknown_{random.randint(0, 1000000)}"
+        self.image_save_name = self.text()
         self.setToolTip(config.get_tooltip("default_image"))
+        self.setAlignment(Qt.AlignCenter)
 
     def dragEnterEvent(self, e):
         if e.mimeData().hasImage():
@@ -39,7 +41,7 @@ class RecipeImage(QLabel):
         path = path_helpers.convert_unc(path)
         img = Image.open(path)
         resized = img.resize((480, 320))
-        save_path = path_helpers.make_image_path(f"{self.image_save_name}.jpg")
+        save_path = self.image_save_name
         resized.save(save_path)
 
         return save_path

@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QTreeView)
 from PyQt5.QtCore import Qt
 from support import gui_helpers
-from gui_models.export_dialog import ExportDialog
+from gui.export_dialog import ExportDialog
 
 
 class PrintsAndExports(object):

@@ -15,12 +15,12 @@ from PyQt5.QtWidgets import (QApplication,
                              QComboBox,
                              QListView,
                              QTreeView)
-from gui_models.instructions_gui_model import InstructionsGuiModel
-from gui_models.ingredients_gui_model import IngredientsGuiModel
-from gui_models.recipe_list_gui_model import RecipeListGuiModel
-from gui_models.meal_plan_gui_model import MealPlanGuiModel
-from gui_models.meal_plan_list_gui_model import MealPlanListGuiModel
-from gui_models.grocery_list_gui_model import GroceryListGuiModel
+from gui.instructions_gui_model import InstructionsGuiModel
+from gui.ingredients_gui_model import CenterPanelComponent
+from gui.recipe_list_gui_model import RecipeListGuiModel
+from gui.meal_plan_gui_model import MealPlanGuiModel
+from gui.meal_plan_list_gui_model import MealPlanListGuiModel
+from gui.grocery_list_gui_model import GroceryListGuiModel
 import config
 from support import gui_helpers
 import os
@@ -38,7 +38,7 @@ class App(QWidget):
         self.height = 1600
         self.recipe_gui_model = RecipeListGuiModel(self)
         self.instructions_gui_model = InstructionsGuiModel(self)
-        self.ingredients_gui_model = IngredientsGuiModel(self)
+        self.ingredients_gui_model = CenterPanelComponent(self)
         self.meal_plan_gui_model = MealPlanGuiModel(self)
         self.meal_plan_list_gui_model = MealPlanListGuiModel(self)
         self.grocery_list_gui_model = GroceryListGuiModel(self)
@@ -80,8 +80,11 @@ class App(QWidget):
 
     def load_active_recipe(self):
         recipe = self.recipe_gui_model.get_selected_recipe()
-        self.instructions_gui_model.set_recipe(recipe)
-        self.ingredients_gui_model.set_recipe(recipe)
+
+        print(recipe.image, recipe.title)
+
+        self.instructions_gui_model.refresh()
+        self.ingredients_gui_model.refresh()
 
     def refresh(self):
         self.meal_plan_gui_model.refresh()

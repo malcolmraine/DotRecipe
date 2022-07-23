@@ -8,8 +8,9 @@ from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QLabel, QVBoxLayout,
 
 import config
 from support import gui_helpers
-from gui_models.base_gui_model import BaseGuiModel
-from gui_models.prints_and_exports import PrintsAndExports
+from gui.base_gui_model import BaseGuiModel
+from gui.prints_and_exports import PrintsAndExports
+from support.filter_collection import FilterCollection
 
 
 class InstructionsGuiModel(BaseGuiModel):
@@ -23,7 +24,6 @@ class InstructionsGuiModel(BaseGuiModel):
         label_layout.addWidget(self.label)
         upper_layout.addLayout(label_layout)
         self.list_view = self.make_listview()
-        self.list_view.chang
 
         self.list_layout.addWidget(self.label)
         self.list_layout.addWidget(self.list_view)
@@ -84,7 +84,7 @@ class InstructionsGuiModel(BaseGuiModel):
             self.model.removeRow(selected_indexes[0].row())
 
     def get_as_list(self):
-        items = []
+        items = FilterCollection()
 
         for row in range(self.model.rowCount()):
             index = self.model.index(row, 1)

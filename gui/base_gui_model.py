@@ -16,9 +16,9 @@ from PyQt5.QtWidgets import (QApplication,
 from typing import List
 from data_models.recipe import Recipe
 from support import gui_helpers
-from gui_models.export_dialog import ExportDialog
+from gui.export_dialog import ExportDialog
 from collections import namedtuple
-
+from support.filter_collection import FilterCollection
 
 class GuiState(object):
     def __init__(self):
@@ -27,7 +27,7 @@ class GuiState(object):
 
 
 class BaseGuiModel(object):
-    recipes: List[Recipe] = []
+    recipes = FilterCollection()
     state = GuiState()
 
     def __init__(self, parent):
@@ -36,6 +36,7 @@ class BaseGuiModel(object):
         self.parent = parent
         self.model = None
         self.group_box = QGroupBox("")
+        self.edit_role = Qt.EditRole
 
         self.print_export_button_layout = QHBoxLayout()
         self.print_export_button_layout.setAlignment(Qt.AlignRight)
@@ -45,6 +46,9 @@ class BaseGuiModel(object):
         self.print_button = gui_helpers.create_tool_button("Print")
         self.print_button.clicked.connect(self.handle_print)
         self.print_export_button_layout.addWidget(self.print_button)
+
+    def set_edit_role(self, role):
+        self.edit_role = role
 
     def handle_print(self):
         printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
@@ -71,10 +75,12 @@ class BaseGuiModel(object):
             for col_idx, column_data in enumerate(data):
                 self.model.setData(
                     self.model.index(idx, col_idx),
-                    column_data
+                    column_data,
+                    self.edit_role
                 )
         else:
             self.model.setData(
                 self.model.index(idx, 0),
-                data
+                data,
+                self.edit_role
             )

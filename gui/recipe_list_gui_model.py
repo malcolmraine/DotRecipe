@@ -2,21 +2,30 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import (QComboBox, QGroupBox, QHBoxLayout, QLabel, QTreeView, QVBoxLayout)
+from PyQt5.QtGui import QStandardItem
 import glob
 
 import config
 from data_models.recipe import Recipe
 from support import gui_helpers
 from recipe_category import RecipeCategory
-from gui_models.base_gui_model import BaseGuiModel
-from gui_models.meal_plan_gui_model import MealPlanGuiModel
-from gui_models.emg_base import EMGTreeView
+from gui.base_gui_model import BaseGuiModel
+from gui.meal_plan_gui_model import MealPlanGuiModel
+from gui.emg_base import EMGTreeView
+from support.filter_collection import FilterCollection
+
+
+class RecipeListItem(QStandardItem):
+    def __init__(self, recipe: Recipe):
+        super().__init__()
+        self.id = recipe.id
+        self.setText(recipe.title)
 
 
 class RecipeListGuiModel(BaseGuiModel):
     def __init__(self, parent):
         super().__init__(parent)
-        self.active_recipes = []
+        self.active_recipes = FilterCollection()
         self.list_view = EMGTreeView()
         self.list_view.setRootIsDecorated(False)
         self.list_view.setAlternatingRowColors(True)
@@ -75,30 +84,30 @@ class RecipeListGuiModel(BaseGuiModel):
                 recipe.file = path
                 self.recipes.append(recipe)
                 self.active_recipes.append(recipe)
-                print("Loading recipe - " + recipe.title)
+                print("Loading recipe - ", [recipe.title, recipe.image])
         self.parent.refresh()
 
     def filter_by_category(self):
-        self.active_recipes = []
+        self.active_recipes = FilterCollection()
         try:
             recipe_category = RecipeCategory(self.recipe_category_combo.currentText())
 
             if recipe_category not in RecipeCategory or recipe_category == RecipeCategory.DEFAULT:
-                self.active_recipes = [recipe for recipe in self.recipes]
+                self.active_recipes.extend([recipe for recipe in self.recipes])
             else:
                 for recipe in self.recipes:
                     if recipe.primary_category == recipe_category:
                         self.active_recipes.append(recipe)
         except:
             print("Error in selecting recipe category")
-            self.active_recipes = [recipe for recipe in self.recipes]
+            self.active_recipes.extend([recipe for recipe in self.recipes])
 
         self.refresh()
 
-    def add_recipe_to_table(self, title, mod_data):
-        self.model.insertRow(0)
-        self.model.setData(self.model.index(0, 0), title)
-        self.model.setData(self.model.index(0, 1), mod_data)
+    def add_recipe_to_table(self, recipe: Recipe):
+        self.model.appendRow(RecipeListItem(recipe))
+        # self.model.setData(self.model.index(0, 0), title)
+        # self.model.setData(self.model.index(0, 1), mod_data)
 
     def new_recipe(self):
         recipe = Recipe()
@@ -119,11 +128,13 @@ class RecipeListGuiModel(BaseGuiModel):
     def refresh(self):
         self.clear_listview_rows()
         for recipe in self.active_recipes:
-            self.add_recipe_to_table(recipe.title, recipe.primary_category.value)
+            self.add_recipe_to_table(recipe)
 
     def get_selected_recipe(self):
         self.parent.current_idx = self.list_view.selectedIndexes()[0]
-        recipe = self.recipes[self.parent.current_idx.row()]
+        item = self.model.itemFromIndex(self.list_view.selectedIndexes()[0])
+        recipe = self.recipes.find_first_having("id", item.id)
+        #recipe = self.recipes[self.parent.current_idx.row()]
         self.state.active_recipe = recipe
 
         return recipe
