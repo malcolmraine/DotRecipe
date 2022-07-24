@@ -2,39 +2,7 @@ from support.string_helpers import trim, condense_ws
 from enum import Enum
 from fractions import Fraction
 import math
-
-
-class Unit(Enum):
-    TBSP = "tbsp"
-    TSP = "tsp"
-    CUP = "cup"
-    GRAM = "gram"
-    POUND = "lb"
-    COUNT = "cnt"
-    DEFAULT = ""
-
-    def titlecase(self):
-        return str(self.value).title()
-
-    def plural(self):
-        return self.value + "s"
-
-
-class UnitFactory(object):
-    alternate_spellings = {
-        "tablespoon": "tbsp",
-        "tablespoons": "tbsp",
-        "teaspoon": "tsp",
-        "pound": "lb",
-        "count": "cnt"
-    }
-
-    @staticmethod
-    def create(s):
-        if s in UnitFactory.alternate_spellings:
-            return Unit(UnitFactory.alternate_spellings[s])
-        else:
-            return Unit(s)
+from data_models.unit import Unit, UnitFactory
 
 
 class Quantity(object):
@@ -96,7 +64,9 @@ class Quantity(object):
         if frac == 0:
             return str(int(whole))
 
-        return f"{int(whole)} {frac.numerator}/{frac.denominator}"
+        whole_str = str(int(whole)) if int(whole) else ""
+
+        return f"{whole_str} {frac.numerator}/{frac.denominator}"
 
     def convert(self, factor):
         return self._qty * factor
@@ -108,6 +78,34 @@ class Quantity(object):
         return value.isnumeric()
 
     def _from_nl_string(self, s: str):
+        parts = s.split(" ")
+        whole = 0
+        decimal = 0
+        unit = ""
+
+        for idx, part in enumerate(parts):
+            print(part)
+            
+            if "." in part:
+                if part.startswith("."):
+                    whole = 0
+                    decimal = float("0." + part[1:])
+                else:
+                    whole, decimal = part.split(".")
+                    whole = int(whole)
+                    decimal = float("0." + decimal)
+            elif part.isnumeric():
+                whole = int(part)
+            elif "/" in part:
+                decimal = int(part.split("/")[0]) / int(part.split("/")[1])
+            elif idx == len(parts) - 1 and "/" not in part and "." not in part and not part.isnumeric():
+                unit = part
+
+        self._unit = UnitFactory.create(unit)
+        self._qty = whole + decimal
+        return self._qty, self._unit.value
+
+    def _from_nl_string_old(self, s: str):
         """
                Parse from a string that follows a set format.
 
@@ -172,7 +170,12 @@ class Quantity(object):
     def as_fraction_string(self):
         if self.use_base_display:
             return self._base_display_str
-        return f"{self.float_to_fraction(self._qty)} {self._unit.value}"
+        if self._qty > 1:
+            unit_str = self._unit.plural()
+        else:
+            unit_str = self._unit.value
+
+        return f"{self.float_to_fraction(self._qty)} {unit_str}"
 
     def as_float_string(self):
         return f"{self._qty} {self._unit.value}"
