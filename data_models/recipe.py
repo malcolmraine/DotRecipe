@@ -69,3 +69,7 @@ class Recipe(JsonModel):
         self.from_dict(obj)
 
         return self
+
+    def from_file(self, file):
+        with open(file, "r") as f:
+            self.from_json(f.read())

@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+}
+
+.top_row {
+  height: 30%;
+}
+
+.bottom_row {
+  height: 70%;
+}
+
+.description_col {
+  width: 50%;
+}
+
+.image_col {
+  width: 50%;
+}
+
+.ingredients_col {
+  width: 30%;
+}
+
+.instructions_col {
+  width: 70%;
+}
