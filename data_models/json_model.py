@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 from uuid import uuid4
+import pathlib
 
 
 class JsonModel(object):
@@ -10,6 +11,7 @@ class JsonModel(object):
         self.created_at = None
         self.updated_at = None
         self._dirty = False
+        self.dir = pathlib.Path("../resources")
         
     def __setattr__(self, key, value):
         try:

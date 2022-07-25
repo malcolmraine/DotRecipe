@@ -21,6 +21,7 @@ class Recipe(JsonModel):
         self.categories = []
         self.primary_category = None
         self.id = None
+        self.dir = super().dir / "recipes"
 
     def total_time_required(self):
         return self.est_prep_time + self.est_cook_time
