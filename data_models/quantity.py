@@ -6,12 +6,12 @@ from data_models.unit import Unit, UnitFactory
 
 
 class Quantity(object):
-    def __init__(self, value=0):
-        self._qty = value
+    def __init__(self, value: int or float = 0):
+        self._qty: float = value
         self._unit: Unit = Unit.DEFAULT
-        self.mode = "us"
-        self._base_display_str = ""
-        self.use_base_display = False
+        self.mode: str = "us"
+        self._base_display_str: str = ""
+        self.use_base_display: bool = False
 
     def __str__(self):
         return f"{self.float_to_fraction(self._qty)} {self._unit.value}"

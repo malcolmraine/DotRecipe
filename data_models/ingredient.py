@@ -37,3 +37,7 @@ class Ingredient(JsonModel):
 
     def formatted_amount(self):
         return str(self.qty)
+
+    def save(self):
+        pass
+
