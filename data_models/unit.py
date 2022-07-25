@@ -14,6 +14,21 @@ class Unit(Enum):
     KILOGRAM = "kg"
     DEFAULT = ""
 
+    def fullname(self):
+        fullnames = {
+            "lb": "pound",
+            "lbs": "pounds",
+            "gr": "pound",
+            "lt": "pound",
+            "tbsp": "pound",
+            "tsp": "pound",
+            "cup": "cup",
+            "kg": "kilogram",
+            "cnt": "count",
+        }
+
+        return fullnames.get(self.value, self.value)
+
     def titlecase(self):
         return str(self.value).title()
 

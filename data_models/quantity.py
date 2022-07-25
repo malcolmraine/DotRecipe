@@ -85,7 +85,7 @@ class Quantity(object):
 
         for idx, part in enumerate(parts):
             print(part)
-            
+
             if "." in part:
                 if part.startswith("."):
                     whole = 0
@@ -179,6 +179,9 @@ class Quantity(object):
 
     def as_float_string(self):
         return f"{self._qty} {self._unit.value}"
+
+    def get_tooltip(self):
+        return f"{self.float_to_fraction(self._qty)} {self._unit.fullname()}"
 
 
 # test = Quantity()
