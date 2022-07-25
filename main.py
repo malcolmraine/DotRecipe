@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QListView,
                              QTreeView, QMenu, QMainWindow)
 from gui.instructions_gui_model import InstructionsGuiModel
-from gui.ingredients_gui_model import CenterPanelComponent
+from gui.center_panel import CenterPanelComponent
 from gui.recipe_list_gui_model import RecipeListGuiModel
 from gui.meal_plan_gui_model import MealPlanGuiModel
 from gui.meal_plan_list_gui_model import MealPlanListGuiModel
@@ -79,10 +79,7 @@ class App(QWidget):
         self.showMaximized()
 
     def load_active_recipe(self):
-        recipe = self.recipe_gui_model.get_selected_recipe()
-
-        print(recipe.image, recipe.title)
-
+        self.recipe_gui_model.get_selected_recipe()
         self.instructions_gui_model.refresh()
         self.ingredients_gui_model.refresh()
 
