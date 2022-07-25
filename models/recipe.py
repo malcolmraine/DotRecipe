@@ -1,7 +1,7 @@
 import json
 from typing import List, Dict, Tuple
-from data_models.ingredient import Ingredient
-from data_models.json_model import JsonModel
+from models.ingredient import Ingredient
+from models.json_model import JsonModel
 from recipe_category import RecipeCategory
 
 

@@ -1,4 +1,4 @@
-from data_models.json_model import JsonModel
+from models.json_model import JsonModel
 from support.filter_collection import FilterCollection
 
 

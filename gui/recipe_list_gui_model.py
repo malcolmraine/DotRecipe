@@ -6,7 +6,7 @@ from PyQt5.QtGui import QStandardItem
 import glob
 
 import config
-from data_models.recipe import Recipe
+from models.recipe import Recipe
 from support import gui_helpers
 from recipe_category import RecipeCategory
 from gui.base_gui_model import BaseGuiModel
@@ -133,11 +133,10 @@ class RecipeListGuiModel(BaseGuiModel):
             self.add_recipe_to_table(recipe)
 
     def get_selected_recipe(self):
-        selected_indices=  self.list_view.selectedIndexes()
+        selected_indices = self.list_view.selectedIndexes()
         self.parent.current_idx = selected_indices[0]
         item = self.model.itemFromIndex(self.parent.current_idx)
         recipe = self.recipes.where("id", item.id).first()
-        #recipe = self.recipes[self.parent.current_idx.row()]
         self.state.active_recipe = recipe
 
         return recipe

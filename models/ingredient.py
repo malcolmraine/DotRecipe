@@ -1,7 +1,7 @@
 import json
 
-from data_models.json_model import JsonModel
-from data_models.quantity import Quantity, Unit
+from models.json_model import JsonModel
+from models.quantity import Quantity, Unit
 
 
 class Ingredient(JsonModel):

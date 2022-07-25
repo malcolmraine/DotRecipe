@@ -14,8 +14,8 @@ from gui.base_gui_model import GuiState
 import config
 from gui.emg_base import EMGLineEdit, EMGTreeView, EMGRadioButton
 from typing import Any
-from data_models.ingredient import Ingredient
-from data_models.quantity import Quantity
+from models.ingredient import Ingredient
+from models.quantity import Quantity
 
 AMOUNT_COL_IDX = 0
 NAME_COL_IDX = 1

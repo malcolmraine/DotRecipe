@@ -2,7 +2,7 @@ from support.string_helpers import trim, condense_ws
 from enum import Enum
 from fractions import Fraction
 import math
-from data_models.unit import Unit, UnitFactory
+from models.unit import Unit, UnitFactory
 
 
 class Quantity(object):

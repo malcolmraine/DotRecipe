@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QTreeView,
                              QGroupBox)
 from typing import List
-from data_models.recipe import Recipe
+from models.recipe import Recipe
 from support import gui_helpers
 from gui.export_dialog import ExportDialog
 from collections import namedtuple

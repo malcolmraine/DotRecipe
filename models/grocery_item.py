@@ -1,5 +1,5 @@
-from data_models.json_model import JsonModel
-from data_models.quantity import Quantity
+from models.json_model import JsonModel
+from models.quantity import Quantity
 import json
 
 

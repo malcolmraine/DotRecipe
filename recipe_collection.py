@@ -1,5 +1,5 @@
 from typing import List, Optional
-from data_models.recipe import Recipe
+from models.recipe import Recipe
 from recipe_category import RecipeCategory
 
 

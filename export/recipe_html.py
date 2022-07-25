@@ -1,6 +1,6 @@
 import dominate
 from dominate.tags import *
-from data_models.recipe import Recipe
+from models.recipe import Recipe
 import pdfkit
 import os
 import base64
