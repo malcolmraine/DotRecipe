@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QTreeView)
 from PyQt5.QtCore import Qt
 from gui.instructions_gui_model import InstructionsGuiModel
-from gui.ingredients_gui_model import CenterPanelComponent
+from gui.center_panel import CenterPanelComponent
 from gui.recipe_list_gui_model import RecipeListGuiModel
 import config
 from support import gui_helpers

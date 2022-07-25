@@ -112,10 +112,12 @@ class RecipeListGuiModel(BaseGuiModel):
     def new_recipe(self):
         recipe = Recipe()
         recipe.title = config.DEFAULT_RECIPE_TITLE
-        self.recipes.insert(0, Recipe())
-        self.model.insertRow(0)
+        recipe.id = self.recipes.max("id") + 1
+        recipe.primary_category = RecipeCategory.DEFAULT
+        self.recipes.insert(0, recipe)
+        self.model.insertRow(0, RecipeListItem(recipe))
         self.model.setData(self.model.index(0, 0), recipe.title)
-        self.model.setData(self.model.index(0, 1), RecipeCategory.DEFAULT.value)
+        self.model.setData(self.model.index(0, 1), recipe.primary_category.value)
 
         try:
             self.parent.current_idx = self.list_view.selectedIndexes()[0]
@@ -131,9 +133,10 @@ class RecipeListGuiModel(BaseGuiModel):
             self.add_recipe_to_table(recipe)
 
     def get_selected_recipe(self):
-        self.parent.current_idx = self.list_view.selectedIndexes()[0]
-        item = self.model.itemFromIndex(self.list_view.selectedIndexes()[0])
-        recipe = self.recipes.find_first_having("id", item.id)
+        selected_indices=  self.list_view.selectedIndexes()
+        self.parent.current_idx = selected_indices[0]
+        item = self.model.itemFromIndex(self.parent.current_idx)
+        recipe = self.recipes.where("id", item.id).first()
         #recipe = self.recipes[self.parent.current_idx.row()]
         self.state.active_recipe = recipe
 

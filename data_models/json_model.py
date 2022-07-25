@@ -1,11 +1,12 @@
 import os
 import shutil
 import json
+from uuid import uuid4
 
 
 class JsonModel(object):
     def __init__(self):
-        self.file = ""
+        self.file = str(uuid4()) + ".json"
         self.created_at = None
         self.updated_at = None
         self._dirty = False
@@ -38,8 +39,9 @@ class JsonModel(object):
             print("Not dirty - no need to save")
             return
 
-        with open(self.file, "r") as file:
-            original_contents = file.read()
+        if os.path.exists(self.file):
+            with open(self.file, "r") as file:
+                original_contents = file.read()
 
         with open(self.file, "w") as file:
             try:
