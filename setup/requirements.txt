@@ -1,0 +1,5 @@
+dominate>=2.6.0
+PyQt5>=5.15.4
+beautifulsoup4>=4.11.1
+pdfkit>=1.0.0
+requests>=2.25.0
