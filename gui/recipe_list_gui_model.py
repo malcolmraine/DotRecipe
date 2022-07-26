@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtWidgets import (QComboBox, QGroupBox, QHBoxLayout, QLabel, QTreeView, QVBoxLayout)
+from PyQt5.QtWidgets import (QComboBox, QGroupBox, QHBoxLayout, QLabel, QTreeView, QVBoxLayout, QMessageBox)
 from PyQt5.QtGui import QStandardItem
 import glob
 
@@ -11,7 +11,7 @@ from support import gui_helpers
 from recipe_category import RecipeCategory
 from gui.base_gui_model import BaseGuiModel
 from gui.meal_plan_gui_model import MealPlanGuiModel
-from gui.emg_base import EMGTreeView
+from gui.emg_base import EMGTreeView, EMGMessageBox
 from support.filter_collection import FilterCollection
 
 
@@ -67,10 +67,19 @@ class RecipeListGuiModel(BaseGuiModel):
         self.list_view.clicked.connect(self.parent.load_active_recipe)
 
     def delete_recipe(self):
-        try:
-            self.model.removeRow(self.parent.current_idx.row())
-        except FileNotFoundError:
-            pass
+        if EMGMessageBox.confirm(
+                self.parent,
+                "Delete recipe?",
+                "Are you sure you want to delete this recipe?"
+        ):
+            try:
+                self.model.removeRow(self.parent.current_idx.row())
+            except FileNotFoundError as e:
+                EMGMessageBox.info(
+                    self.parent,
+                    "Error",
+                    "Could not delete recipe:\n\n" + str(e)
+                )
 
     def save_recipe(self):
         self.get_selected_recipe().save()

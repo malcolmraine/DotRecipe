@@ -17,7 +17,7 @@ from PyQt5.QtWidgets import (QApplication,
                              QTreeView,
                              QMenu,
                              QRadioButton,
-
+                             QMessageBox,
                              QLineEdit)
 import config
 from support import gui_helpers
@@ -56,3 +56,21 @@ class EMGRadioButton(QRadioButton):
     def __init__(self, *args, checked=False):
         super().__init__(*args)
         self.setChecked(checked)
+
+
+class EMGMessageBox(QMessageBox):
+    def __init__(self, *args):
+        super().__init__(*args)
+
+    @staticmethod
+    def confirm(parent, title, text):
+        box = EMGMessageBox()
+        ret = box.question(parent, title, text, box.Yes | box.No)
+
+        return ret == box.Yes
+
+    @staticmethod
+    def info(parent, title, text):
+        box = EMGMessageBox()
+        box.question(parent, title, text, box.Ok)
+
