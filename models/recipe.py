@@ -3,6 +3,8 @@ from typing import List, Dict, Tuple
 from models.ingredient import Ingredient
 from models.json_model import JsonModel
 from recipe_category import RecipeCategory
+from support.filter_collection import FilterCollection
+from models.recipe_instruction import RecipeInstruction
 
 
 class Recipe(JsonModel):
@@ -10,18 +12,18 @@ class Recipe(JsonModel):
         super().__init__()
         self.title = ""
         self.description = ""
-        self.ingredients: List[Ingredient] = []
+        self.ingredients = FilterCollection()
         self.est_prep_time = 0
         self.est_cook_time = 0
         self.default_serving_qty = 1
         self.notes = ""
         self.image = ""
-        self.instructions = []
+        self.instructions = FilterCollection()
         self.source = ""
-        self.categories = []
+        self.categories = FilterCollection()
         self.primary_category = None
         self.id = None
-        self.dir = super().dir / "recipes"
+        self.dir = "resources/recipes"
 
     def total_time_required(self):
         return self.est_prep_time + self.est_cook_time
@@ -42,7 +44,7 @@ class Recipe(JsonModel):
             "default_serving_qty": self.default_serving_qty,
             "notes": self.notes,
             "image": self.image,
-            "instructions": self.instructions,
+            "instructions": [str(instruction) for instruction in self.instructions],
             "source": self.source
         }
 
@@ -61,9 +63,10 @@ class Recipe(JsonModel):
         self.default_serving_qty = d["default_serving_qty"]
         self.notes = d["notes"]
         self.image = d["image"]
-        self.instructions = d["instructions"]
+        self.instructions = [RecipeInstruction(x) for x in d["instructions"]]
         self.source = d["source"]
         self.id = d["id"]
+        self.unset_dirty()
 
     def from_json(self, s):
         obj = json.loads(s)

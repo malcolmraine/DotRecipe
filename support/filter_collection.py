@@ -63,7 +63,6 @@ class Query(object):
         for where in self._wheres:
             results = self._apply_where(results, where)
 
-        self._wheres.clear()
         return results
 
     def first(self):

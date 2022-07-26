@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import (Qt)
+from PyQt5.QtCore import (Qt, QModelIndex)
 from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QLabel, QVBoxLayout,
                              QListView, QListWidget)
@@ -11,6 +11,25 @@ from support import gui_helpers
 from gui.base_gui_model import BaseGuiModel
 from gui.prints_and_exports import PrintsAndExports
 from support.filter_collection import FilterCollection
+from gui.base_gui_model import GuiState
+from typing import Any
+from models.recipe_instruction import RecipeInstruction
+
+
+class InstructionItemModel(QStandardItemModel):
+    def __init__(self, parent, headers, state: GuiState):
+        super().__init__(0, len(headers), parent)
+        self.state = state
+
+        for idx, header in enumerate(headers):
+            self.setHeaderData(idx, Qt.Horizontal, header)
+
+    def setData(self, index: QModelIndex, value: Any, role: int = Qt.EditRole) -> bool:
+        print("Updating instructions: ", value, index.row(), index.column())
+        recipe = self.state.active_recipe
+        instruction = recipe.instructions[index.row()]
+        instruction.text = value
+        return super(InstructionItemModel, self).setData(index, value, role)
 
 
 class InstructionsGuiModel(BaseGuiModel):
@@ -44,7 +63,8 @@ class InstructionsGuiModel(BaseGuiModel):
 
         self.group_box.setLayout(self.list_layout)
         self.group_box.setMaximumWidth(600)
-        self.set_model(QStandardItemModel(0, 1, self.parent))
+        self.model = InstructionItemModel(self.parent, [""], self.state)
+        #self.set_model(QStandardItemModel(0, 1, self.parent))
 
     def clear_listview_rows(self):
         if self.model is not None:
@@ -75,7 +95,12 @@ class InstructionsGuiModel(BaseGuiModel):
             self.insert_row_at_end(f"{idx + 1}.  \0{instruction}")
 
     def add_instruction(self):
-        self.insert_row_at_end(f"{self.model.rowCount() + 1}. \0")
+        active_recipe = self.state.active_recipe
+
+        if active_recipe:
+            instruction = RecipeInstruction()
+            self.state.active_recipe.instructions.append(instruction)
+            self.insert_row_at_end(f"{self.model.rowCount() + 1}. {instruction.text}\0")
 
     def remove_instruction(self):
         selected_indexes = self.list_view.selectedIndexes()
