@@ -22,10 +22,10 @@ class JsonModel(object):
         super(JsonModel, self).__setattr__(key, value)
         
     def set_dirty(self):
-        self._dirty = True
+        super(JsonModel, self).__setattr__("_dirty", True)
     
     def unset_dirty(self):
-        self._dirty = False
+        super(JsonModel, self).__setattr__("_dirty", False)
 
     def to_dict(self):
         raise NotImplementedError()
