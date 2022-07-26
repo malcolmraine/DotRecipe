@@ -1,3 +1,4 @@
+import datetime
 import os
 import shutil
 import json
@@ -37,9 +38,14 @@ class JsonModel(object):
         raise NotImplementedError()
 
     def save(self):
+        if self.created_at is None:
+            self.created_at = str(datetime.datetime.now())
+
         if not self._dirty:
             print("Not dirty - no need to save")
             return
+
+        self.updated_at = str(datetime.datetime.now())
 
         if os.path.exists(self.file):
             with open(self.file, "r") as file:
