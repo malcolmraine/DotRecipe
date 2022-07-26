@@ -40,7 +40,8 @@ class IngredientItemModel(QStandardItemModel):
             ingredient.qty.from_nl_string(value)
             return super(IngredientItemModel, self).setData(index, ingredient.qty.as_fraction_string(), role)
         else:
-            value = value[0].upper() + value[1:]
+            if len(value) >= 2:
+                value = value[0].upper() + value[1:]
 
             if col == NAME_COL_IDX:
                 ingredient.name = value
