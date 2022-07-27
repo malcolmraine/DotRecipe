@@ -3,26 +3,21 @@ from copy import deepcopy
 
 
 class Query(object):
+    op_funcs = {
+        "==": lambda x, y: x == y,
+        "!=": lambda x, y: x != y,
+        ">=": lambda x, y: x >= y,
+        "<=": lambda x, y: x <= y,
+        ">": lambda x, y: x > y,
+        "<": lambda x, y: x < y,
+    }
+
     def __init__(self, data: list or FilterCollection):
         self.data = FilterCollection(data)
         self._wheres = []
 
-    @staticmethod
-    def _handle_str_op(rval, op, lval):
-        if op == "==":
-            return rval == lval
-        elif op == "!=":
-            return rval != lval
-        elif op == ">=":
-            return rval >= lval
-        elif op == "<=":
-            return rval <= lval
-        elif op == ">":
-            return rval > lval
-        elif op == "<":
-            return rval < lval
-        else:
-            return False
+    def _handle_str_op(self, rval, op, lval):
+        return self.op_funcs.get(op, lambda x, y: False)(rval, lval)
 
     def where(self, *args):
         self._wheres.append([*args, False])
@@ -64,6 +59,9 @@ class Query(object):
             results = self._apply_where(results, where)
 
         return results
+
+    def exists(self) -> bool:
+        return not self.get().empty()
 
     def first(self):
         results = self.get()
@@ -122,6 +120,9 @@ class FilterCollection(object):
 
     def clear(self):
         self.data.clear()
+
+    def empty(self):
+        return len(self.data) == 0
 
     def query(self):
         return Query(self)
