@@ -11,7 +11,9 @@ class Unit(Enum):
     LITER = "liter"
     GALLON = "gal"
     QUART = "qt"
+    PINT = "pt"
     KILOGRAM = "kg"
+    OUNCE = "oz"
     DEFAULT = ""
 
     def fullname(self):
@@ -25,6 +27,7 @@ class Unit(Enum):
             "cup": "cup",
             "kg": "kilogram",
             "cnt": "count",
+            "oz": "oz",
         }
 
         return fullnames.get(self.value, self.value)
@@ -41,7 +44,8 @@ class Unit(Enum):
             "cnt": "cnt",
             "tsp": "tsp",
             "gal": "gal",
-            "cup": "cups"
+            "cup": "cups",
+            "oz": "oz"
         }
         return plurals.get(self.value, self.value)
 
@@ -51,6 +55,8 @@ class Unit(Enum):
 
 class UnitFactory(object):
     alternate_spellings = {
+        "pint": "pt",
+        "pnt": "pt",
         "tablespoon": "tbsp",
         "tblespoons": "tbsp",
         "tablespn": "tbsp",
@@ -113,7 +119,9 @@ class UnitFactory(object):
 
     @staticmethod
     def create(s):
-        if s in UnitFactory.alternate_spellings:
+        if isinstance(s, Unit):
+            return s
+        elif s in UnitFactory.alternate_spellings:
             return Unit(UnitFactory.alternate_spellings[s])
         else:
             return Unit(s)

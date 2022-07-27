@@ -52,6 +52,7 @@ class App(QWidget):
         self.recipes_tab = QWidget()
         self.meal_planning_tab = QWidget()
         self.tabs.resize(self.width, self.height)
+        self.tabs.tabBarClicked.connect(self.grocery_list_gui_model.refresh)
 
         # Add tabs
         self.tabs.addTab(self.recipes_tab, "Recipes")

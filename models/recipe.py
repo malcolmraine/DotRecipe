@@ -9,8 +9,8 @@ from models.recipe_instruction import RecipeInstruction
 
 class Recipe(JsonModel):
     def __init__(self):
-        super().__init__()
         self.title = ""
+        super().__init__()
         self.description = ""
         self.ingredients = FilterCollection()
         self.est_prep_time = 0
@@ -25,15 +25,22 @@ class Recipe(JsonModel):
         self.id = None
         self.dir = "resources/recipes"
 
+    def default_filename(self):
+        if self.title:
+            return self.title.lower().replace(" ", "_")
+        else:
+            return super().default_filename()
+
     def total_time_required(self):
         return self.est_prep_time + self.est_cook_time
 
     def to_dict(self) -> dict:
         return {
-            "metadata": {
-                "created_at": self.created_at,
-                "updated_at": self.updated_at,
-            },
+            **self.get_metadata_dict(),
+            # "metadata": {
+            #     "created_at": self.created_at,
+            #     "updated_at": self.updated_at,
+            # },
             "id": self.id,
             "title": self.title,
             "description": self.description,
@@ -69,11 +76,8 @@ class Recipe(JsonModel):
         self.unset_dirty()
 
     def from_json(self, s):
+        self.never_saved = False
         obj = json.loads(s)
         self.from_dict(obj)
 
         return self
-
-    def from_file(self, file):
-        with open(file, "r") as f:
-            self.from_json(f.read())

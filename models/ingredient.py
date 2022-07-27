@@ -2,6 +2,7 @@ import json
 
 from models.json_model import JsonModel
 from models.quantity import Quantity, Unit
+from copy import deepcopy
 
 
 class Ingredient(JsonModel):
@@ -11,6 +12,13 @@ class Ingredient(JsonModel):
         self.qty: Quantity = Quantity()
         self.description = ""
         self.category = None
+
+    def __copy__(self):
+        result = Ingredient()
+        result.qty = deepcopy(self.qty)
+        result.description = self.description
+        result.category = deepcopy(self.category)
+        return result
 
     def to_dict(self):
         return {

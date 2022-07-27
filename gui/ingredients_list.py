@@ -4,7 +4,7 @@
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import (Qt)
 from PyQt5 import QtCore
-from PyQt5.QtGui import QIcon, QStandardItemModel
+from PyQt5.QtGui import QIcon, QStandardItemModel, QBrush, QColor
 from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QTreeView, QVBoxLayout,
                              QRadioButton, QLineEdit)
 from support.gui_helpers import create_tool_button, create_label, create_treeview_model, get_icon
@@ -15,7 +15,8 @@ import config
 from gui.emg_base import EMGLineEdit, EMGTreeView, EMGRadioButton
 from typing import Any
 from models.ingredient import Ingredient
-from models.quantity import Quantity
+from models.quantity import Quantity, convert_up
+from gui.bubble_notification import ToastNotification
 
 AMOUNT_COL_IDX = 0
 NAME_COL_IDX = 1
@@ -31,14 +32,17 @@ class IngredientItemModel(QStandardItemModel):
             self.setHeaderData(idx, Qt.Horizontal, header)
 
     def setData(self, index: QtCore.QModelIndex, value: Any, role: int = Qt.EditRole) -> bool:
-        print("Updating ingredients: ", value, index.row(), index.column())
+        #print("Updating ingredients: ", value, index.row(), index.column())
         recipe = self.state.active_recipe
         ingredient = recipe.ingredients[index.row()]
         col = index.column()
+        retval = False
 
         if col == AMOUNT_COL_IDX:
             ingredient.qty.from_nl_string(value)
-            return super(IngredientItemModel, self).setData(index, ingredient.qty.as_fraction_string(), role)
+            formatted = convert_up(ingredient.qty)
+            value = formatted.as_fraction_string()
+            # retval = super(IngredientItemModel, self).setData(index, formatted.as_fraction_string(), role)
         else:
             if len(value) >= 2:
                 value = value[0].upper() + value[1:]
@@ -48,7 +52,16 @@ class IngredientItemModel(QStandardItemModel):
             elif col == NOTE_COL_IDX:
                 ingredient.description = value
 
-            return super(IngredientItemModel, self).setData(index, value, role)
+        if self.state.grocery_list.has_item(ingredient):
+            for n in range(3):
+                super(IngredientItemModel, self).setData(
+                    self.index(index.row(), n),
+                    QBrush(QColor(124, 252, 0, 127)),
+                    QtCore.Qt.BackgroundRole
+                )
+
+        retval = super(IngredientItemModel, self).setData(index, value, role)
+        return retval
 
     def toFractionPres(self, index: QtCore.QModelIndex) -> bool:
         recipe = self.state.active_recipe
@@ -84,6 +97,8 @@ class IngredientsList(BaseGuiModel):
         self.us_units_radio_btn = EMGRadioButton("US", checked=True)
         self.us_units_radio_btn.clicked.connect(self.change_to_fraction_pres)
         self.metric_units_radio_btn.clicked.connect(self.change_to_decimal_pres)
+        self.add_to_grocery_list_btn = create_tool_button("Add to Grocery List")
+        self.add_to_grocery_list_btn.clicked.connect(self.add_to_grocery_list)
 
         self.lower_layout = QHBoxLayout()
         self.button_layout = QHBoxLayout()
@@ -92,6 +107,7 @@ class IngredientsList(BaseGuiModel):
         self.add_remove_btn_layout.addWidget(self.remove_ingredient_btn)
         self.add_remove_btn_layout.addWidget(self.metric_units_radio_btn)
         self.add_remove_btn_layout.addWidget(self.us_units_radio_btn)
+        self.add_remove_btn_layout.addWidget(self.add_to_grocery_list_btn)
         self.button_layout.addLayout(self.add_remove_btn_layout)
 
         self.servings_layout = QHBoxLayout()
@@ -118,6 +134,14 @@ class IngredientsList(BaseGuiModel):
 
     def change_to_decimal_pres(self):
         ...
+
+    def add_to_grocery_list(self):
+        recipe = self.state.active_recipe
+
+        if recipe is not None:
+            self.state.grocery_list.add_items(recipe.ingredients)
+            self.refresh()
+            ToastNotification.show(f"Added ingredients for {recipe.title} to the grocery list")
 
     @staticmethod
     def make_listview():

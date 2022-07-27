@@ -8,11 +8,15 @@ import pathlib
 
 class JsonModel(object):
     def __init__(self):
-        self.file = str(uuid4()) + ".json"
+        self.file = self.default_filename() + ".json"
         self.created_at = None
         self.updated_at = None
         self._dirty = False
         self.dir = pathlib.Path("../resources")
+        self.never_saved = True
+
+    def default_filename(self):
+        return str(uuid4())
         
     def __setattr__(self, key, value):
         try:
@@ -21,6 +25,14 @@ class JsonModel(object):
         except:
             pass
         super(JsonModel, self).__setattr__(key, value)
+
+    def get_metadata_dict(self):
+        return {
+            "metadata": {
+                "created_at": self.created_at,
+                "updated_at": self.updated_at,
+            }
+        }
         
     def set_dirty(self):
         super(JsonModel, self).__setattr__("_dirty", True)
@@ -37,6 +49,11 @@ class JsonModel(object):
     def from_json(self, s):
         raise NotImplementedError()
 
+    def from_file(self, file):
+        with open(file, "r") as f:
+            self.file = file
+            self.from_json(f.read())
+
     def save(self):
         if self.created_at is None:
             self.created_at = str(datetime.datetime.now())
@@ -46,7 +63,10 @@ class JsonModel(object):
             return
 
         self.updated_at = str(datetime.datetime.now())
+        original_contents = ""
 
+        if self.never_saved:
+            self.file = str(self.dir)  + "/" + self.default_filename()
         if os.path.exists(self.file):
             with open(self.file, "r") as file:
                 original_contents = file.read()

@@ -9,3 +9,4 @@ class RecipeCategory(Enum):
     VEGETARIAN = "Vegetarian"
     PESCATARIAN = "Pescatarian"
     SANDWICH = "Sandwich"
+    OTHER = "Other"

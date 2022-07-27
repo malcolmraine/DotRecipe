@@ -13,6 +13,7 @@ from gui.base_gui_model import BaseGuiModel
 from gui.meal_plan_gui_model import MealPlanGuiModel
 from gui.emg_base import EMGTreeView, EMGMessageBox
 from support.filter_collection import FilterCollection
+from gui.bubble_notification import ToastNotification
 
 
 class RecipeListItem(QStandardItem):
@@ -83,7 +84,7 @@ class RecipeListGuiModel(BaseGuiModel):
 
     def save_recipe(self):
         self.get_selected_recipe().save()
-        print("SAVED")
+        ToastNotification.show("Recipe saved")
 
     def load_recipes(self):
         for path in glob.glob("resources/recipes/*.json"):

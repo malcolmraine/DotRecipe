@@ -1,7 +1,7 @@
 {
     "metadata": {
         "created_at": "2022-07-02 17:15:04",
-        "updated_at": "2022-07-02 17:15:04"
+        "updated_at": "2022-07-26 22:55:32.578783"
     },
     "id": 1,
     "title": "Egg Salad",
@@ -10,8 +10,13 @@
     "ingredients": [
         {
             "name": "Paprika",
-            "description": "red spice",
+            "description": "Red spice",
             "qty": "1 tbsp"
+        },
+        {
+            "name": "Black pepper",
+            "description": "",
+            "qty": "1 1/4 tbsp"
         }
     ],
     "est_prep_time": 0,
@@ -23,7 +28,9 @@
         "Turn on the stove1",
         "Cook food",
         "Serve food",
-        "cleanup"
+        "cleanup",
+        "Serve food",
+        "t"
     ],
     "source": "Pinterest"
 }

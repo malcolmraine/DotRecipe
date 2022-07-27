@@ -14,22 +14,35 @@ from support.filter_collection import FilterCollection
 from gui.base_gui_model import GuiState
 from typing import Any
 from models.recipe_instruction import RecipeInstruction
+import re
 
 
 class InstructionItemModel(QStandardItemModel):
     def __init__(self, parent, headers, state: GuiState):
         super().__init__(0, len(headers), parent)
         self.state = state
+        self.number_rgx = re.compile(r"[0-9]+\.\s*(.*)")
 
         for idx, header in enumerate(headers):
             self.setHeaderData(idx, Qt.Horizontal, header)
 
     def setData(self, index: QModelIndex, value: Any, role: int = Qt.EditRole) -> bool:
-        print("Updating instructions: ", value, index.row(), index.column())
+        #print("Updating instructions: ", value, index.row(), index.column())
         recipe = self.state.active_recipe
         instruction = recipe.instructions[index.row()]
-        instruction.text = value
-        return super(InstructionItemModel, self).setData(index, value, role)
+
+        print(value)
+
+        if str(value)[0].isnumeric():
+            parts = self.number_rgx.findall(str(value))
+            if len(parts) > 0:
+                instruction.text = parts[0]
+            else:
+                instruction.text = str(value)
+        else:
+            instruction.text = str(value)
+
+        return super(InstructionItemModel, self).setData(index, f"{index.row() + 1}.  {instruction.text}", role)
 
 
 class InstructionsGuiModel(BaseGuiModel):
@@ -63,7 +76,7 @@ class InstructionsGuiModel(BaseGuiModel):
 
         self.group_box.setLayout(self.list_layout)
         self.group_box.setMaximumWidth(600)
-        self.model = InstructionItemModel(self.parent, [""], self.state)
+        self.set_model(InstructionItemModel(self.parent, [""], self.state))
         #self.set_model(QStandardItemModel(0, 1, self.parent))
 
     def clear_listview_rows(self):
@@ -92,7 +105,7 @@ class InstructionsGuiModel(BaseGuiModel):
         self.clear_listview_rows()
         print("Active recipe: ")
         for idx, instruction in enumerate(self.state.active_recipe.instructions):
-            self.insert_row_at_end(f"{idx + 1}.  \0{instruction}")
+            self.insert_row_at_end(instruction)
 
     def add_instruction(self):
         active_recipe = self.state.active_recipe
@@ -100,7 +113,7 @@ class InstructionsGuiModel(BaseGuiModel):
         if active_recipe:
             instruction = RecipeInstruction()
             self.state.active_recipe.instructions.append(instruction)
-            self.insert_row_at_end(f"{self.model.rowCount() + 1}. {instruction.text}\0")
+            self.insert_row_at_end(f"{self.model.rowCount() + 1}. {instruction.text}")
 
     def remove_instruction(self):
         selected_indexes = self.list_view.selectedIndexes()

@@ -19,11 +19,14 @@ from support import gui_helpers
 from gui.export_dialog import ExportDialog
 from collections import namedtuple
 from support.filter_collection import FilterCollection
+from models.grocery_list import GroceryList
+
 
 class GuiState(object):
     def __init__(self):
         self.active_recipe = None
         self.active_meal_plan = None
+        self.grocery_list = GroceryList()
 
 
 class BaseGuiModel(object):

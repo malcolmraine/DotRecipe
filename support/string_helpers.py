@@ -20,3 +20,11 @@ def condense_ws(s: str):
             .replace("\r", " ")
 
         return " ".join(trim(_s.split(" ")))
+
+
+def after(substr: str, s: str):
+    ...
+
+
+def before(substr: str, s: str):
+    ...
