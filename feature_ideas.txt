@@ -2,7 +2,7 @@
 - a spot for other recipes
     - or a button to add a recipe for a day
 
-- # of servings per recipe
-- Converting ingredient amounts per # of servings
+- # of servings per recipe - DONE
+- Converting ingredient amounts per # of servings - DONE
 
 - need to keep state for previous recipes when switchign between them

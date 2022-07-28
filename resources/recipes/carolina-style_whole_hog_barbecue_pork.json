@@ -1,0 +1,97 @@
+{
+    "metadata": {
+        "created_at": "2022-07-27 07:53:38.046071",
+        "updated_at": "2022-07-27 07:53:38.046085"
+    },
+    "id": 425,
+    "title": "Carolina-Style \"Whole Hog\" Barbecue Pork",
+    "description": "I'm showing you how to do a \"whole hog\" barbecue without a 6-foot-long barbecue pit, which you probably don't have, and without a whole hog, which you definitely don't have. While you probably could get those things if you really needed to, by using this experimental, mini version, you really don't have to. Serve on buns.",
+    "category": "Other",
+    "ingredients": [
+        {
+            "name": "baby back pork ribs",
+            "description": "",
+            "qty": "2 1/2 lbs"
+        },
+        {
+            "name": "pork shoulder roast ",
+            "description": "",
+            "qty": "1 3/4 lbs"
+        },
+        {
+            "name": "pork tenderloin, trimmed",
+            "description": "",
+            "qty": "1 1/4 lbs"
+        },
+        {
+            "name": "pork belly, skin removed",
+            "description": "",
+            "qty": "1 lb"
+        },
+        {
+            "name": "pork sirloin roast",
+            "description": "",
+            "qty": " 3/4 lb"
+        },
+        {
+            "name": "kosher salt",
+            "description": "",
+            "qty": "5 tsp"
+        },
+        {
+            "name": "brown sugar",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "smoked salt",
+            "description": "",
+            "qty": "2 tsp"
+        },
+        {
+            "name": "smoked paprika",
+            "description": "",
+            "qty": "2 tsp"
+        },
+        {
+            "name": "ground black pepper",
+            "description": "",
+            "qty": "2 tsp"
+        },
+        {
+            "name": "ground cumin",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "garlic powder",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "onion powder",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "cayenne pepper",
+            "description": "",
+            "qty": " 1/2 tsp"
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": "",
+    "notes": "",
+    "image": "resources/images/carolina-style_\"whole_hog\"_barbecue_pork.jpg",
+    "instructions": [
+        "Preheat the oven to 250 degrees F (120 degrees C).\n",
+        "Cut ribs, pork shoulder, tenderloin, pork belly, and pork sirloin in half.\n",
+        "Combine kosher salt, brown sugar, smoked salt, smoked paprika, black pepper, cumin, garlic powder, onion powder, and cayenne for dry rub in a small bowl with a spoon.\n",
+        "Season cuts of meat on both sides with dry rub; reserve about 4 teaspoons of the rub to season the cooked pork if needed after tasting.\n",
+        "Place a piece of heavy-duty foil on a sheet pan. Place a half of ribs down in the center of the foil; top with shoulder, tenderloin, pork belly, and sirloin. Top with other rib half. Wrap tightly in 3 more layers of foil. Transfer to a Dutch oven.\n",
+        "Roast in the preheated oven until meat is falling off the bone and very, very tender, about 9 hours.\n",
+        "Remove bones and pull/shred meat before serving. All or some of the rendered fat can be mixed into the meat.\n"
+    ],
+    "source": "https://www.allrecipes.com/recipe/8418832/carolina-style-whole-hog-barbecue-pork/?printview"
+}

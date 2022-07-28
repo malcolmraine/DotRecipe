@@ -14,8 +14,8 @@ from PyQt5.QtWidgets import (QApplication,
 
 
 class ExportDialog(QDialog):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super().__init__(parent)
 
         main_layout = QVBoxLayout()
         self.setLayout(main_layout)

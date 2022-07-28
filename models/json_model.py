@@ -66,7 +66,8 @@ class JsonModel(object):
         original_contents = ""
 
         if self.never_saved:
-            self.file = str(self.dir)  + "/" + self.default_filename()
+            self.file = str(self.dir) + "/" + self.default_filename() + ".json"
+
         if os.path.exists(self.file):
             with open(self.file, "r") as file:
                 original_contents = file.read()

@@ -1,0 +1,121 @@
+{
+    "metadata": {
+        "created_at": "2022-07-27 00:26:40.401855",
+        "updated_at": "2022-07-27 00:26:40.401922"
+    },
+    "id": 501,
+    "title": "Chinese Pork Buns (Cha Siu Bao)",
+    "description": "You may find these buns in the local Chinese restaurants.  They do take time to make but they are yummy!",
+    "category": "Other",
+    "ingredients": [
+        {
+            "name": "all-purpose flour",
+            "description": "",
+            "qty": "6 cups"
+        },
+        {
+            "name": "white sugar",
+            "description": "",
+            "qty": " 1/4 cup"
+        },
+        {
+            "name": "warm water (110 degrees F/45 degrees C)",
+            "description": "",
+            "qty": "1 3/4 cups"
+        },
+        {
+            "name": "active dry yeast",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "baking powder",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "shortening",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "finely chopped pork",
+            "description": "",
+            "qty": "1 lb"
+        },
+        {
+            "name": "light soy sauce",
+            "description": "",
+            "qty": "1.5 tablespoons"
+        },
+        {
+            "name": "hoisin sauce",
+            "description": "",
+            "qty": "1.5 tablespoons"
+        },
+        {
+            "name": "soy sauce",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "white sugar",
+            "description": "",
+            "qty": "1.5 tablespoons"
+        },
+        {
+            "name": "soy sauce",
+            "description": "",
+            "qty": "1.5 tablespoons"
+        },
+        {
+            "name": "oyster sauce",
+            "description": "",
+            "qty": "1.5 tablespoons"
+        },
+        {
+            "name": "water",
+            "description": "",
+            "qty": "1 cup"
+        },
+        {
+            "name": "cornstarch",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "water",
+            "description": "",
+            "qty": "2.5 tablespoons"
+        },
+        {
+            "name": "shortening",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "sesame oil",
+            "description": "",
+            "qty": "1 1/2 tsp"
+        },
+        {
+            "name": "ground white pepper",
+            "description": "",
+            "qty": " 1/4 tsp"
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": "",
+    "notes": "",
+    "image": "resources/images/chinese_pork_buns_(cha_siu_bao).jpg",
+    "instructions": [
+        "Dissolve 1/4 cup sugar in 1 3/4 cups warm water, and then add the yeast.  Let stand for 10 minutes, or until mixture is frothy.  Sift the flour and baking powder into a large bowl.  Stir in 2 tablespoons shortening and the yeast mixture; mix well.\n",
+        "Knead the dough until smooth and elastic.  Place the dough in a greased bowl, and cover it with a sheet of cling wrap.  Let the dough rise in a warm place for about 2 hours, or until it has tripled in bulk.\n",
+        "Cut the pork into 2 inch thick strips.  Use fork to prick it all over.  Marinate for 5 hours in a mixture made with 1 1/2 tablespoons light soy sauce, 1 1/2 tablespoons hoisin sauce, and 1 teaspoon sweet soy sauce.  Grill the pork until cooked and charred.  Cut roasted port into 1/2 inch cubes.\n",
+        "Combine 1 1/2 tablespoons sugar, 1 1/2 tablespoons soy sauce, oyster sauce, and 1 cup water in a saucepan.  Bring to the boil.  Mix cornstarch with 2 1/2 tablespoons water; add to the saucepan, and stir until thickened.  Mix in 2 tablespoons lard or shortening, sesame oil, and  white pepper.  Cool, and mix in the roasted pork.\n",
+        "Remove the dough from the bowl, and knead it on a lightly floured surface until it is smooth and elastic.  Roll the dough into a long roll, and divide it into 24 pieces.  Flatten each piece with the palm of the hand to form a thin circle.  The center of the circle should be thicker than the edge.  Place one portion of the pork filling in the center of each dough circle.  Wrap the dough to enclose the filling.  Pinch edges to form the bun.  Let the buns stand for 10 minutes.\n",
+        "Steam buns for 12 minutes.  Serve.\n"
+    ],
+    "source": ""
+}

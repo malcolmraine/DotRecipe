@@ -1,0 +1,93 @@
+{
+    "metadata": {
+        "created_at": "2022-07-27 00:31:04.441014",
+        "updated_at": "2022-07-27 07:59:33.413515"
+    },
+    "id": 463,
+    "title": "Slow Cooker Texas Pulled Pork",
+    "description": "Slow cooked, Texas-style pulled pork that is served on a buttered and toasted roll.  My family's favorite.",
+    "category": "Other",
+    "ingredients": [
+        {
+            "name": "Vegetable oil",
+            "description": "",
+            "qty": " 33/100 tbsp"
+        },
+        {
+            "name": "Pound) pork shoulder roast ",
+            "description": "",
+            "qty": "0 "
+        },
+        {
+            "name": "Barbeque sauce",
+            "description": "",
+            "qty": "1 cup"
+        },
+        {
+            "name": "Apple cider vinegar",
+            "description": "",
+            "qty": " 1/2 cup"
+        },
+        {
+            "name": "Chicken broth",
+            "description": "",
+            "qty": " 1/2 cup"
+        },
+        {
+            "name": "Light brown sugar",
+            "description": "",
+            "qty": " 1/4 cup"
+        },
+        {
+            "name": "Prepared yellow mustard",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "Worcestershire sauce",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "Chili powder",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "Large onion, chopped",
+            "description": "",
+            "qty": "0 "
+        },
+        {
+            "name": "Cloves garlic, crushed",
+            "description": "",
+            "qty": "0 "
+        },
+        {
+            "name": "Dried thyme",
+            "description": "",
+            "qty": "1 1/2 tsp"
+        },
+        {
+            "name": "Buns, split",
+            "description": "",
+            "qty": "0 "
+        },
+        {
+            "name": "Butter, or as needed",
+            "description": "",
+            "qty": "0 "
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": "",
+    "notes": "",
+    "image": "resources/images/slow_cooker_texas_pulled_pork.jpg",
+    "instructions": [
+        "Pour the vegetable oil into the bottom of a slow cooker. Place the pork roast into the slow cooker; pour in the barbecue sauce, apple cider vinegar, and chicken broth. Stir in the brown sugar, yellow mustard, Worcestershire sauce, chili powder, onion, garlic, and thyme. Cover and cook on High until the roast shreds easily with a fork, 5 to 6 hours.\n",
+        "Remove the roast from the slow cooker, and shred the meat using two forks. Return the shredded pork to the slow cooker, and stir the meat into the juices.\n",
+        "Spread the inside of both halves of hamburger buns with butter. Toast the buns, butter side down, in a skillet over medium heat until golden brown. Spoon pork into the toasted buns.\n"
+    ],
+    "source": "https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview"
+}
