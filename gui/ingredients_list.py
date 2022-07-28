@@ -197,6 +197,8 @@ class IngredientsList(BaseGuiModel):
                 ingredient.description
             ])
         self.servings_line_edit.setText(str(self.state.active_recipe.default_serving_qty))
+        self.list_view.resizeColumnToContents(1)
+        self.list_view.resizeColumnToContents(2)
 
     def clear_listview_rows(self):
         self.model.removeRows(0, self.model.rowCount())

@@ -96,6 +96,8 @@ class RecipeListGuiModel(BaseGuiModel):
                 self.active_recipes.append(recipe)
                 print("Loading recipe - ", [recipe.title, recipe.image])
         self.parent.refresh()
+        self.list_view.resizeColumnToContents(0)
+        self.list_view.resizeColumnToContents(1)
 
     def filter_by_category(self):
         self.active_recipes = FilterCollection()
