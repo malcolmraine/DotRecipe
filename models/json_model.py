@@ -74,7 +74,6 @@ class JsonModel(object):
 
         with open(self.file, "w") as file:
             try:
-                print(self.to_json())
                 file.write(self.to_json())
                 self.unset_dirty()
             except Exception as e:

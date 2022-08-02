@@ -9,6 +9,7 @@ from models.ingredient import Ingredient
 from models.recipe_instruction import RecipeInstruction
 from recipe_category import RecipeCategory
 from random import randint
+from support.string_helpers import *
 
 
 def resize_image(path: str, save_path: str):
@@ -19,27 +20,30 @@ def resize_image(path: str, save_path: str):
     return save_path
 
 
-def unicode_convert(u):
-    conversions = {
-        "\u00bd": "0.5",
-        "\u00bc": "0.25",
-        "\u00be": "0.75",
-        "\u2009": "."
-    }
-    _u = u
-    for key in conversions:
-        _u = _u.replace(key, conversions[key])
-        print(key, " - ", _u)
+def convert_fractions(u):
+    parts = u.split(" ")
+    final = ""
+    print(parts)
+    for part in parts:
+        if "/" in part:
+            numerator, denominator = convert_unicode(part).split("/")
 
-    return _u.replace(".0.", ".")
-
+            if numerator.isnumeric() and denominator.isnumeric():
+                final += str(int(numerator) / int(denominator))
+            else:
+                final += part
+        else:
+            final += part
+        final += " "
+    print(final)
+    return final
 
 #page = requests.get('https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview')
 #page = requests.get('https://www.allrecipes.com/recipe/7097/chinese-pork-buns-cha-siu-bao/?printview')
 #page = requests.get('https://www.allrecipes.com/recipe/246562/thai-cucumber-salad-with-udon-noodles/?printview')
-page = requests.get('https://www.allrecipes.com/recipe/8418832/carolina-style-whole-hog-barbecue-pork/?printview')
-# page = requests.get('https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview')
-# page = requests.get('https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview')
+#page = requests.get('https://www.allrecipes.com/recipe/8418832/carolina-style-whole-hog-barbecue-pork/?printview')
+#page = requests.get('https://www.allrecipes.com/recipe/21694/marinated-grilled-shrimp/?printview')
+page = requests.get('https://www.allrecipes.com/recipe/8437697/california-roll-rice-noodle-bowl/?printview')
 
 _soup = BeautifulSoup(page.content, 'html.parser')  # Parsing content using beautifulsoup
 
@@ -72,15 +76,16 @@ def all_recipes_parser(soup):
                 recipe.default_serving_qty = item.get("yield", "").split(" ")[0]
 
                 for s in item["recipeIngredient"]:
-                    print(s)
+                    _s = convert_fractions(convert_unicode(s))
+                    print(_s)
                     ingredient = Ingredient()
-                    ingredient.qty.from_nl_string(" ".join(unicode_convert(s).split(" ")[:2]))
-                    ingredient.name = " ".join(unicode_convert(s).split(" ")[2:])
+                    ingredient.qty.from_nl_string(" ".join(_s.split(" ")[:2]))
+                    ingredient.name = " ".join(_s.split(" ")[2:])
                     recipe.ingredients.append(ingredient)
 
                 for s in item["recipeInstructions"]:
                     instruction = RecipeInstruction()
-                    instruction.text = s["text"]
+                    instruction.text = convert_unicode(s["text"])
                     recipe.instructions.append(instruction)
 
                 recipe.file = "../" + str(recipe.dir) + "/" + recipe.default_filename() + ".json"
