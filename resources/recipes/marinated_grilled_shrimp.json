@@ -1,0 +1,69 @@
+{
+    "metadata": {
+        "created_at": "2022-07-30 16:58:09.764999",
+        "updated_at": "2022-07-30 16:58:09.765014"
+    },
+    "id": 784,
+    "title": "Marinated Grilled Shrimp",
+    "description": "Learn how to marinate shrimp for grilling with this easy marinade that makes your shrimp so yummy you don't even need cocktail sauce. Don't let the cayenne pepper scare you &mdash; you don't even taste it. My young kids love it. It is also a big hit with company and easy to prepare. I make this with frozen or fresh shrimp and use my indoor electric grill if the weather is not good for outdoor grilling. Try it with a salad, baked potato, and garlic bread.",
+    "category": "Other",
+    "ingredients": [
+        {
+            "name": "olive oil",
+            "description": "",
+            "qty": "\u2153 cup"
+        },
+        {
+            "name": "tomato sauce",
+            "description": "",
+            "qty": " 1/4 cup"
+        },
+        {
+            "name": "garlic, minced",
+            "description": "",
+            "qty": "3 cloves"
+        },
+        {
+            "name": "red wine vinegar",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "chopped fresh basil",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "salt",
+            "description": "",
+            "qty": " 1/2 tsp"
+        },
+        {
+            "name": "cayenne pepper",
+            "description": "",
+            "qty": " 1/4 tsp"
+        },
+        {
+            "name": "fresh shrimp, peeled and deveined",
+            "description": "",
+            "qty": "2 lbs"
+        },
+        {
+            "name": "skewers",
+            "description": "",
+            "qty": "6 each"
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": "",
+    "notes": "",
+    "image": "resources/images/marinated_grilled_shrimp.jpg",
+    "instructions": [
+        "Stir together olive oil, tomato sauce, garlic, and red wine vinegar in a large bowl. Season with basil, salt, and cayenne pepper. Add shrimp to the bowl; stir until evenly coated. Cover and refrigerate for 30 minutes to 1 hour, stirring once or twice.\n",
+        "Preheat the grill to medium heat. Lightly oil the grate.\n",
+        "Thread shrimp onto skewers, piercing once near the tail and once near the head. Discard marinade.\n",
+        "Cook shrimp on the preheated grill until opaque, 2 to 3 minutes per side.\n"
+    ],
+    "source": "https://www.allrecipes.com/recipe/21694/marinated-grilled-shrimp/?printview"
+}
