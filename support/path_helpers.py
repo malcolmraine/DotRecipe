@@ -11,6 +11,10 @@ def get_unique_filename(path: str) -> str:
     ...
 
 
+def make_resource_path(path: str):
+    return path
+
+
 def make_image_path(filename: str) -> str:
     return f"resources/images/{filename}"
 

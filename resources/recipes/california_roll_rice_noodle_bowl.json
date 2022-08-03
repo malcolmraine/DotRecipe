@@ -1,0 +1,116 @@
+{
+    "metadata": {
+        "created_at": "2022-08-01 21:22:15.074703",
+        "updated_at": "2022-08-01 21:22:15.074732"
+    },
+    "id": 540,
+    "title": "California Roll Rice Noodle Bowl",
+    "description": "We're turning America's favorite sushi roll into a bowl, but instead of sushi rice, we're using rice noodles. Unlike actual California rolls, this cold, refreshing, delicious dish requires no skill or experience. Plus, we can use this exact same method to turn any of our other favorite sushi rolls into a rice noodle bowl.",
+    "category": "Other",
+    "ingredients": [
+        {
+            "name": "mayonnaise ",
+            "description": "",
+            "qty": "0 cup"
+        },
+        {
+            "name": "seasoned rice vinegar ",
+            "description": "",
+            "qty": "1 tbsp"
+        },
+        {
+            "name": "Dijon mustard ",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "Sriracha ",
+            "description": "",
+            "qty": "0 tsp"
+        },
+        {
+            "name": "imitation crabmeat, chopped ",
+            "description": "",
+            "qty": "6 ounces"
+        },
+        {
+            "name": "sliced green onions ",
+            "description": "",
+            "qty": "0 cup"
+        },
+        {
+            "name": "wasabi paste, or to taste ",
+            "description": "",
+            "qty": "0 tsp"
+        },
+        {
+            "name": "prepared mayo dressing base ",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "dried rice noodles ",
+            "description": "",
+            "qty": "4 ounces"
+        },
+        {
+            "name": "- peeled, pitted, and cubed ",
+            "description": "",
+            "qty": "1 avocado"
+        },
+        {
+            "name": "sliced English cucumber ",
+            "description": "",
+            "qty": "0 cup"
+        },
+        {
+            "name": "furikake (Japanese nori seasoning), or to taste ",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "sliced green onions, or to taste ",
+            "description": "",
+            "qty": "1 tsp"
+        },
+        {
+            "name": "prepared mayo dressing base ",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "seasoned rice vinegar ",
+            "description": "",
+            "qty": "0 cup"
+        },
+        {
+            "name": "soy sauce ",
+            "description": "",
+            "qty": "2 tablespoons"
+        },
+        {
+            "name": "sesame oil ",
+            "description": "",
+            "qty": "0 tsp"
+        },
+        {
+            "name": "wasabi paste, or to taste ",
+            "description": "",
+            "qty": "0 tsp"
+        }
+    ],
+    "est_prep_time": 0,
+    "est_cook_time": 0,
+    "default_serving_qty": "",
+    "notes": "",
+    "image": "resources/images/california_roll_rice_noodle_bowl.jpg",
+    "instructions": [
+        "Combine mayonnaise, rice vinegar, mustard, and Sriracha in a bowl with a whisk. Taste and adjust as needed. Chill in the refrigerator until ready to use.\n",
+        "Combine chopped imitation crab, green onions, wasabi paste, and 2 tablespoons of our prepared mayo dressing base in another bowl. Refrigerate until needed.\n",
+        "Bring a pot of lightly salted water to a boil; reserve a bowl of ice water nearby to add cooked noodles to after boiling. Stir noodles into the boiling water and cook until just tender, about 5 minutes. Drain and transfer to cold water to stop the cooking process.\n",
+        "Combine 2 tablespoons prepared mayo dressing base, seasoned rice vinegar, soy sauce, sesame oil, and wasabi paste for noodle dressing in a bowl with a whisk. Drain noodles and toss in sauce until evenly coated.\n",
+        "Wrap in plastic wrap and chill for 1 to 2 hours, tossing occasionally.\n",
+        "Unwrap noodles and transfer to a serving bowl. Top with avocado, cucumber, and crab mixture; drizzle with more mayo sauce and garnish with furikake.\n"
+    ],
+    "source": "https://www.allrecipes.com/recipe/8437697/california-roll-rice-noodle-bowl/?printview"
+}
