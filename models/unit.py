@@ -45,7 +45,7 @@ class Unit(Enum):
             "tsp": "tsp",
             "gal": "gal",
             "cup": "cups",
-            "oz": "oz"
+            "oz": "oz",
         }
         return plurals.get(self.value, self.value)
 
@@ -114,7 +114,7 @@ class UnitFactory(object):
         "quart": "qt",
         "quarts": "qt",
         "qwart": "qt",
-        "qart": "qt"
+        "qart": "qt",
     }
 
     @staticmethod

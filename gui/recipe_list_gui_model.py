@@ -1,7 +1,15 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtWidgets import (QComboBox, QGroupBox, QHBoxLayout, QLabel, QTreeView, QVBoxLayout, QMessageBox)
+from PyQt5.QtWidgets import (
+    QComboBox,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QTreeView,
+    QVBoxLayout,
+    QMessageBox,
+)
 from PyQt5.QtGui import QStandardItem
 import glob
 
@@ -45,14 +53,18 @@ class RecipeListGuiModel(BaseGuiModel):
         self.save_recipe_button.clicked.connect(self.save_recipe)
         self.delete_recipe_button.clicked.connect(self.delete_recipe)
 
-        self.model = gui_helpers.create_treeview_model(self.parent, ["Name", "Category"])
+        self.model = gui_helpers.create_treeview_model(
+            self.parent, ["Name", "Category"]
+        )
 
         self.list_layout = QVBoxLayout()
         self.recipe_list_head_layout = QHBoxLayout()
         self.recipe_list_label = QLabel("Recipes")
         self.recipe_category_combo = QComboBox()
         self.recipe_category_combo.addItem("--  Category  --")
-        self.recipe_category_combo.addItems([category.value for category in RecipeCategory])
+        self.recipe_category_combo.addItems(
+            [category.value for category in RecipeCategory]
+        )
         self.recipe_category_combo.currentTextChanged.connect(self.filter_by_category)
         self.recipe_list_head_layout.addWidget(self.recipe_list_label)
         self.recipe_list_head_layout.addWidget(self.recipe_category_combo)
@@ -69,17 +81,15 @@ class RecipeListGuiModel(BaseGuiModel):
 
     def delete_recipe(self):
         if EMGMessageBox.confirm(
-                self.parent,
-                "Delete recipe?",
-                "Are you sure you want to delete this recipe?"
+            self.parent,
+            "Delete recipe?",
+            "Are you sure you want to delete this recipe?",
         ):
             try:
                 self.model.removeRow(self.parent.current_idx.row())
             except FileNotFoundError as e:
                 EMGMessageBox.info(
-                    self.parent,
-                    "Error",
-                    "Could not delete recipe:\n\n" + str(e)
+                    self.parent, "Error", "Could not delete recipe:\n\n" + str(e)
                 )
 
     def save_recipe(self):
@@ -104,7 +114,10 @@ class RecipeListGuiModel(BaseGuiModel):
         try:
             recipe_category = RecipeCategory(self.recipe_category_combo.currentText())
 
-            if recipe_category not in RecipeCategory or recipe_category == RecipeCategory.DEFAULT:
+            if (
+                recipe_category not in RecipeCategory
+                or recipe_category == RecipeCategory.DEFAULT
+            ):
                 self.active_recipes.extend([recipe for recipe in self.recipes])
             else:
                 for recipe in self.recipes:
@@ -119,7 +132,10 @@ class RecipeListGuiModel(BaseGuiModel):
     def add_recipe_to_table(self, recipe: Recipe):
         self.model.appendRow(RecipeListItem(recipe))
         # self.model.setData(self.model.index(0, 0), title)
-        self.model.setData(self.model.index(self.model.rowCount() - 1, 1), recipe.primary_category.value)
+        self.model.setData(
+            self.model.index(self.model.rowCount() - 1, 1),
+            recipe.primary_category.value,
+        )
 
     def new_recipe(self):
         recipe = Recipe()

@@ -1,12 +1,26 @@
 import sys
 from PyQt5.QtGui import QIcon, QPixmap
 from datetime import datetime
-from PyQt5.QtCore import (QDate, QDateTime, QRegExp, QSortFilterProxyModel, Qt,
-                          QTime, Qt)
+from PyQt5.QtCore import QDate, QDateTime, QRegExp, QSortFilterProxyModel, Qt, QTime, Qt
 from PyQt5.QtGui import QStandardItemModel
-from PyQt5.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
-                             QGroupBox, QHBoxLayout, QLabel, QLineEdit, QTreeView, QVBoxLayout,
-                             QWidget, QPushButton, QToolButton, QListWidget, QListWidgetItem, QListView)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QCheckBox,
+    QComboBox,
+    QGridLayout,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QTreeView,
+    QVBoxLayout,
+    QWidget,
+    QPushButton,
+    QToolButton,
+    QListWidget,
+    QListWidgetItem,
+    QListView,
+)
 import glob
 import os
 import pathlib

@@ -132,7 +132,12 @@ class Quantity(object):
                 whole = int(part)
             elif "/" in part:
                 decimal = int(part.split("/")[0]) / int(part.split("/")[1])
-            elif idx == len(parts) - 1 and "/" not in part and "." not in part and not part.isnumeric():
+            elif (
+                idx == len(parts) - 1
+                and "/" not in part
+                and "." not in part
+                and not part.isnumeric()
+            ):
                 unit = part
 
         self.unit = UnitFactory.create(unit)
@@ -141,17 +146,15 @@ class Quantity(object):
 
     def _from_nl_string_old(self, s: str):
         """
-               Parse from a string that follows a set format.
+        Parse from a string that follows a set format.
 
-               [int|float]
+        [int|float]
 
-               :param s:
-               :return:
-               """
+        :param s:
+        :return:
+        """
         # Convert all whitespace to " "
-        s = s.replace("\t", "") \
-            .replace("\n", " ") \
-            .replace("\r", " ")
+        s = s.replace("\t", "").replace("\n", " ").replace("\r", " ")
         s = trim(s.lower())
         qty_set = False
 
@@ -223,7 +226,7 @@ def convert_up(qty: Quantity):
         Unit.CUP: (2, 1, Unit.PINT),
         Unit.PINT: (2, 1, Unit.QUART),
         Unit.QUART: (4, 1, Unit.GALLON),
-        Unit.OUNCE: (16, 1, Unit.POUND)
+        Unit.OUNCE: (16, 1, Unit.POUND),
     }
     conversion = conversions.get(qty.unit, None)
 
@@ -248,7 +251,7 @@ def convert_down(qty: Quantity):
         Unit.CUP: (1, 2, Unit.PINT),
         Unit.PINT: (1, 2, Unit.QUART),
         Unit.QUART: (1, 4, Unit.GALLON),
-        Unit.POUND: (1, 16, Unit.OUNCE)
+        Unit.POUND: (1, 16, Unit.OUNCE),
     }
     conversion = conversions.get(qty.unit, None)
 
@@ -270,7 +273,6 @@ def convert_down(qty: Quantity):
 #
 # print(convert_up(test))
 #
-
 
 
 # test = Quantity()

@@ -1,8 +1,19 @@
 from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtCore import (Qt)
-from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QTreeView, QVBoxLayout,
-                             QRadioButton, QLineEdit)
-from support.gui_helpers import create_tool_button, create_label, create_treeview_model, get_icon
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QGroupBox,
+    QHBoxLayout,
+    QTreeView,
+    QVBoxLayout,
+    QRadioButton,
+    QLineEdit,
+)
+from support.gui_helpers import (
+    create_tool_button,
+    create_label,
+    create_treeview_model,
+    get_icon,
+)
 from gui.base_gui_model import BaseGuiModel
 from gui.recipe_image import RecipeImage
 import config
@@ -33,6 +44,9 @@ class CenterPanelComponent(BaseGuiModel):
             self.recipe_image.image_save_name = "unknown"
 
     def refresh(self):
-        print("Before set image ", [self.state.active_recipe.image, self.state.active_recipe.title])
+        print(
+            "Before set image ",
+            [self.state.active_recipe.image, self.state.active_recipe.title],
+        )
         self.set_image()
         self.ingredients_list.refresh()

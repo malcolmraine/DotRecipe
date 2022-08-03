@@ -1,10 +1,16 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import (Qt, QModelIndex)
+from PyQt5.QtCore import Qt, QModelIndex
 from PyQt5.QtGui import QStandardItemModel
-from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QLabel, QVBoxLayout,
-                             QListView, QListWidget)
+from PyQt5.QtWidgets import (
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QVBoxLayout,
+    QListView,
+    QListWidget,
+)
 
 import config
 from support import gui_helpers
@@ -26,7 +32,7 @@ class InstructionItemModel(QStandardItemModel):
             self.setHeaderData(idx, Qt.Horizontal, header)
 
     def setData(self, index: QModelIndex, value: Any, role: int = Qt.EditRole) -> bool:
-        #print("Updating instructions: ", value, index.row(), index.column())
+        # print("Updating instructions: ", value, index.row(), index.column())
         recipe = self.state.active_recipe
         instruction = recipe.instructions[index.row()]
 
@@ -41,7 +47,9 @@ class InstructionItemModel(QStandardItemModel):
         else:
             instruction.text = str(value)
 
-        return super(InstructionItemModel, self).setData(index, f"{index.row() + 1}.  {instruction.text}", role)
+        return super(InstructionItemModel, self).setData(
+            index, f"{index.row() + 1}.  {instruction.text}", role
+        )
 
 
 class InstructionsGuiModel(BaseGuiModel):
@@ -76,7 +84,7 @@ class InstructionsGuiModel(BaseGuiModel):
         self.group_box.setLayout(self.list_layout)
         self.group_box.setMaximumWidth(600)
         self.set_model(InstructionItemModel(self.parent, [""], self.state))
-        #self.set_model(QStandardItemModel(0, 1, self.parent))
+        # self.set_model(QStandardItemModel(0, 1, self.parent))
 
     def clear_listview_rows(self):
         if self.model is not None:
@@ -128,5 +136,3 @@ class InstructionsGuiModel(BaseGuiModel):
             item = self.model.data(index, Qt.DisplayRole)
             items.append(item)
         return items
-
-

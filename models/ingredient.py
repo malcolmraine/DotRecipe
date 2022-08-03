@@ -24,7 +24,7 @@ class Ingredient(JsonModel):
         return {
             "name": self.name,
             "description": self.description,
-            "qty": self.qty.as_fraction_string()
+            "qty": self.qty.as_fraction_string(),
         }
 
     def to_json(self):
@@ -48,4 +48,3 @@ class Ingredient(JsonModel):
 
     def save(self):
         pass
-

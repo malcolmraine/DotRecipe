@@ -52,7 +52,7 @@ class Recipe(JsonModel):
             "notes": self.notes,
             "image": self.image,
             "instructions": [str(instruction) for instruction in self.instructions],
-            "source": self.source
+            "source": self.source,
         }
 
     def to_json(self):

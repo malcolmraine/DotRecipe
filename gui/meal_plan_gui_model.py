@@ -2,18 +2,21 @@ import sys
 from typing import Dict
 from PyQt5.QtGui import QIcon, QStandardItemModel
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QApplication,
-                             QHBoxLayout,
-                             QVBoxLayout,
-                             QWidget,
-                             QTabWidget,
-                             QTableWidget,
-                             QTableView,
-                             QToolButton,
-                             QComboBox,
-                             QListView,
-                             QTreeView,
-                             QGroupBox)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QVBoxLayout,
+    QWidget,
+    QTabWidget,
+    QTableWidget,
+    QTableView,
+    QToolButton,
+    QComboBox,
+    QListView,
+    QTreeView,
+    QGroupBox,
+)
+
 # from gui.instructions_gui_model import InstructionsGuiModel
 # from gui.ingredients_gui_model import IngredientsGuiModel
 # from gui.recipe_list_gui_model import RecipeListGuiModel
@@ -42,10 +45,12 @@ class MealPlanGuiModel(BaseGuiModel):
         table_model = QStandardItemModel(0, 7, self.parent)
         meal_plan_table.setModel(table_model)
         table_model.setHorizontalHeaderLabels(config.WEEKDAYS)
-        table_model.setVerticalHeaderLabels([
-            "Meals",
-            "Notes",
-        ])
+        table_model.setVerticalHeaderLabels(
+            [
+                "Meals",
+                "Notes",
+            ]
+        )
 
         for n in range(7):
             meal_plan_table.setColumnWidth(n, 200)

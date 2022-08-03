@@ -1,9 +1,22 @@
 import sys
-from PyQt5.QtCore import (QRectF, Qt, QPropertyAnimation, pyqtProperty,
-                          QPoint, QParallelAnimationGroup, QEasingCurve)
+from PyQt5.QtCore import (
+    QRectF,
+    Qt,
+    QPropertyAnimation,
+    pyqtProperty,
+    QPoint,
+    QParallelAnimationGroup,
+    QEasingCurve,
+)
 from PyQt5.QtGui import QPainter, QPainterPath, QColor, QPen
-from PyQt5.QtWidgets import (QLabel, QWidget, QVBoxLayout, QApplication,
-                             QLineEdit, QPushButton)
+from PyQt5.QtWidgets import (
+    QLabel,
+    QWidget,
+    QVBoxLayout,
+    QApplication,
+    QLineEdit,
+    QPushButton,
+)
 
 
 # Courtesy of https://gist.github.com/Tuhin-thinks/d94c613ba0f75df0c8104c067970fc92
@@ -19,8 +32,12 @@ class BubbleLabel(QWidget):
         text = kwargs.pop("text", "")
         super(BubbleLabel, self).__init__(*args, **kwargs)
         self.setWindowFlags(
-            Qt.Window | Qt.Tool | Qt.FramelessWindowHint |
-            Qt.WindowStaysOnTopHint | Qt.X11BypassWindowManagerHint)
+            Qt.Window
+            | Qt.Tool
+            | Qt.FramelessWindowHint
+            | Qt.WindowStaysOnTopHint
+            | Qt.X11BypassWindowManagerHint
+        )
         # Set minimum width and height
         self.setMinimumWidth(200)
         self.setMinimumHeight(58)
@@ -50,10 +67,12 @@ class BubbleLabel(QWidget):
         # Window start position
         startPos = QPoint(
             self._desktop.screenGeometry().width() - self.width() - 50,
-            self._desktop.availableGeometry().height() - self.height())
+            self._desktop.availableGeometry().height() - self.height(),
+        )
         endPos = QPoint(
             self._desktop.screenGeometry().width() - self.width() - 50,
-            self._desktop.availableGeometry().height() - self.height() * 3 - 5)
+            self._desktop.availableGeometry().height() - self.height() * 3 - 5,
+        )
         self.move(startPos)
         # Initialization animation
         self.initAnimation(startPos, endPos)
@@ -88,29 +107,33 @@ class BubbleLabel(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)  # Antialiasing
 
-        rectPath = QPainterPath()                     # Rounded Rectangle
-        triPath = QPainterPath()                      # Bottom triangle
+        rectPath = QPainterPath()  # Rounded Rectangle
+        triPath = QPainterPath()  # Bottom triangle
 
-        height = self.height() - 8                    # Offset up 8
+        height = self.height() - 8  # Offset up 8
         rectPath.addRoundedRect(QRectF(0, 0, self.width(), height), 5, 5)
-        x = self.width() - 20  # tripath crest 20px left from the farthest right end of the widget
-        triPath.moveTo(x - 10, height)                     # Move to the bottom horizontal line 4/5
+        x = (
+            self.width() - 20
+        )  # tripath crest 20px left from the farthest right end of the widget
+        triPath.moveTo(x - 10, height)  # Move to the bottom horizontal line 4/5
         # Draw triangle
         triPath.lineTo(x + 6, height + 8)
         triPath.lineTo(x + 12, height)
 
-        rectPath.addPath(triPath)                     # Add a triangle to the previous rectangle
+        rectPath.addPath(triPath)  # Add a triangle to the previous rectangle
 
         # Border brush
-        painter.setPen(QPen(self.BorderColor, 1, Qt.SolidLine,
-                            Qt.RoundCap, Qt.RoundJoin))
+        painter.setPen(
+            QPen(self.BorderColor, 1, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin)
+        )
         # Background brush
         painter.setBrush(self.BackgroundColor)
         # Draw shape
         painter.drawPath(rectPath)
         # Draw a line on the bottom of the triangle to ensure the same color as the background
-        painter.setPen(QPen(self.BackgroundColor, 1,
-                            Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
+        painter.setPen(
+            QPen(self.BackgroundColor, 1, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin)
+        )
         painter.drawLine(x, height, x + 12, height)
 
     def windowOpacity(self):

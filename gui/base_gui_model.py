@@ -1,18 +1,29 @@
-from PyQt5.QtCore import (QDate, QDateTime, QRegExp, QSortFilterProxyModel, Qt,
-                          QTime, Qt, QEvent, QObject)
+from PyQt5.QtCore import (
+    QDate,
+    QDateTime,
+    QRegExp,
+    QSortFilterProxyModel,
+    Qt,
+    QTime,
+    Qt,
+    QEvent,
+    QObject,
+)
 from PyQt5 import QtPrintSupport
-from PyQt5.QtWidgets import (QApplication,
-                             QHBoxLayout,
-                             QVBoxLayout,
-                             QWidget,
-                             QTabWidget,
-                             QTableWidget,
-                             QTableView,
-                             QToolButton,
-                             QComboBox,
-                             QListView,
-                             QTreeView,
-                             QGroupBox)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QVBoxLayout,
+    QWidget,
+    QTabWidget,
+    QTableWidget,
+    QTableView,
+    QToolButton,
+    QComboBox,
+    QListView,
+    QTreeView,
+    QGroupBox,
+)
 from typing import List
 from models.recipe import Recipe
 from support import gui_helpers
@@ -77,13 +88,7 @@ class BaseGuiModel(object):
         if isinstance(data, list):
             for col_idx, column_data in enumerate(data):
                 self.model.setData(
-                    self.model.index(idx, col_idx),
-                    column_data,
-                    self.edit_role
+                    self.model.index(idx, col_idx), column_data, self.edit_role
                 )
         else:
-            self.model.setData(
-                self.model.index(idx, 0),
-                data,
-                self.edit_role
-            )
+            self.model.setData(self.model.index(idx, 0), data, self.edit_role)

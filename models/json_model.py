@@ -17,7 +17,7 @@ class JsonModel(object):
 
     def default_filename(self):
         return str(uuid4())
-        
+
     def __setattr__(self, key, value):
         try:
             if not self.__getattribute__("_dirty"):
@@ -33,10 +33,10 @@ class JsonModel(object):
                 "updated_at": self.updated_at,
             }
         }
-        
+
     def set_dirty(self):
         super(JsonModel, self).__setattr__("_dirty", True)
-    
+
     def unset_dirty(self):
         super(JsonModel, self).__setattr__("_dirty", False)
 
@@ -83,5 +83,3 @@ class JsonModel(object):
 
     def delete(self):
         os.remove(self.file)
-
-

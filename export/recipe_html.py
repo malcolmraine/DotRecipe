@@ -16,10 +16,10 @@ class RecipeHtml(object):
     def generate(self):
         with self.doc.head:
             if self.stylesheet:
-                link(rel='stylesheet', href=self.stylesheet)
+                link(rel="stylesheet", href=self.stylesheet)
 
             if self.script:
-                script(type='text/javascript', src=self.script)
+                script(type="text/javascript", src=self.script)
 
         with self.doc:
             with div(cls="row"):
@@ -30,7 +30,7 @@ class RecipeHtml(object):
                 with div(cls="image_col"):
                     with open(self.recipe.image, "rb") as image_file:
                         encoded_string = base64.b64encode(image_file.read())
-                    #img(src=f"data:image/jpeg;base64,{encoded_string}")
+                    # img(src=f"data:image/jpeg;base64,{encoded_string}")
                     img(src=self.recipe.image)
 
             with div(cls="row"):
@@ -40,7 +40,13 @@ class RecipeHtml(object):
                         h2("Ingredients")
                         with ol():
                             for ingredient in self.recipe.ingredients:
-                                li(p(ingredient.qty.as_fraction_string() + " " + ingredient.name))
+                                li(
+                                    p(
+                                        ingredient.qty.as_fraction_string()
+                                        + " "
+                                        + ingredient.name
+                                    )
+                                )
 
                 with div(cls="instructions_col"):
                     hr()
@@ -62,5 +68,5 @@ with open("test.html", "w") as file:
     value = test.generate()
     file.write(value)
 
-    pdfkit.from_string(value, f'{r.title}.pdf')
+    pdfkit.from_string(value, f"{r.title}.pdf")
     print(r.to_dict())

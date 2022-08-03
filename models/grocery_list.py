@@ -25,7 +25,7 @@ class GroceryList(JsonModel):
     def to_dict(self):
         return {
             **self.get_metadata_dict(),
-            "items": [item.to_dict() for item in self.items]
+            "items": [item.to_dict() for item in self.items],
         }
 
     def to_json(self):
@@ -36,4 +36,3 @@ class GroceryList(JsonModel):
         self.created_at = d["metadata"]["created_at"]
         self.updated_at = d["metadata"]["updated_at"]
         self.items = FilterCollection([Ingredient().from_dict(s) for s in d["items"]])
-

@@ -2,17 +2,19 @@ import sys
 
 from PyQt5.QtGui import QIcon, QStandardItemModel
 from PyQt5 import QtPrintSupport
-from PyQt5.QtWidgets import (QApplication,
-                             QHBoxLayout,
-                             QVBoxLayout,
-                             QWidget,
-                             QTabWidget,
-                             QTableWidget,
-                             QTableView,
-                             QToolButton,
-                             QComboBox,
-                             QListView,
-                             QTreeView)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QVBoxLayout,
+    QWidget,
+    QTabWidget,
+    QTableWidget,
+    QTableView,
+    QToolButton,
+    QComboBox,
+    QListView,
+    QTreeView,
+)
 from PyQt5.QtCore import Qt
 from gui.instructions_gui_model import InstructionsGuiModel
 from gui.center_panel import CenterPanelComponent
@@ -27,7 +29,9 @@ from gui.bubble_notification import ToastNotification
 class GroceryListGuiModel(BaseGuiModel):
     def __init__(self, parent):
         super().__init__(parent)
-        self.model = gui_helpers.create_treeview_model(self.parent, ["Qty", "Item", "Notes"])
+        self.model = gui_helpers.create_treeview_model(
+            self.parent, ["Qty", "Item", "Notes"]
+        )
         self.list_layout = QVBoxLayout()
         self.list_view = QTreeView()
 

@@ -2,17 +2,19 @@ import sys
 
 from PyQt5.QtGui import QIcon, QStandardItemModel
 from PyQt5 import QtPrintSupport
-from PyQt5.QtWidgets import (QApplication,
-                             QHBoxLayout,
-                             QVBoxLayout,
-                             QWidget,
-                             QTabWidget,
-                             QTableWidget,
-                             QTableView,
-                             QToolButton,
-                             QComboBox,
-                             QListView,
-                             QTreeView)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QVBoxLayout,
+    QWidget,
+    QTabWidget,
+    QTableWidget,
+    QTableView,
+    QToolButton,
+    QComboBox,
+    QListView,
+    QTreeView,
+)
 from PyQt5.QtCore import Qt
 from support import gui_helpers
 from gui.export_dialog import ExportDialog

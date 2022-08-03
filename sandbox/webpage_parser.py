@@ -38,14 +38,19 @@ def convert_fractions(u):
     print(final)
     return final
 
-#page = requests.get('https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview')
-#page = requests.get('https://www.allrecipes.com/recipe/7097/chinese-pork-buns-cha-siu-bao/?printview')
-#page = requests.get('https://www.allrecipes.com/recipe/246562/thai-cucumber-salad-with-udon-noodles/?printview')
-#page = requests.get('https://www.allrecipes.com/recipe/8418832/carolina-style-whole-hog-barbecue-pork/?printview')
-#page = requests.get('https://www.allrecipes.com/recipe/21694/marinated-grilled-shrimp/?printview')
-page = requests.get('https://www.allrecipes.com/recipe/8437697/california-roll-rice-noodle-bowl/?printview')
 
-_soup = BeautifulSoup(page.content, 'html.parser')  # Parsing content using beautifulsoup
+# page = requests.get('https://www.allrecipes.com/recipe/92462/slow-cooker-texas-pulled-pork/?printview')
+# page = requests.get('https://www.allrecipes.com/recipe/7097/chinese-pork-buns-cha-siu-bao/?printview')
+# page = requests.get('https://www.allrecipes.com/recipe/246562/thai-cucumber-salad-with-udon-noodles/?printview')
+# page = requests.get('https://www.allrecipes.com/recipe/8418832/carolina-style-whole-hog-barbecue-pork/?printview')
+# page = requests.get('https://www.allrecipes.com/recipe/21694/marinated-grilled-shrimp/?printview')
+page = requests.get(
+    "https://www.allrecipes.com/recipe/8437697/california-roll-rice-noodle-bowl/?printview"
+)
+
+_soup = BeautifulSoup(
+    page.content, "html.parser"
+)  # Parsing content using beautifulsoup
 
 
 def all_recipes_parser(soup):
@@ -60,13 +65,15 @@ def all_recipes_parser(soup):
                 if image is not None:
                     img_data = requests.get(image).content
                     handler_path = f"{recipe.title.lower().replace(' ', '_')}.jpg"
-                    with open(handler_path, 'wb') as handler:
+                    with open(handler_path, "wb") as handler:
                         handler.write(img_data)
                     resize_image(
                         handler_path,
-                        f"../resources/images/{recipe.title.lower().replace(' ', '_')}.jpg"
+                        f"../resources/images/{recipe.title.lower().replace(' ', '_')}.jpg",
                     )
-                    recipe.image = f"resources/images/{recipe.title.lower().replace(' ', '_')}.jpg"
+                    recipe.image = (
+                        f"resources/images/{recipe.title.lower().replace(' ', '_')}.jpg"
+                    )
                     os.remove(handler_path)
 
                 recipe.description = item.get("description", "")
@@ -88,7 +95,9 @@ def all_recipes_parser(soup):
                     instruction.text = convert_unicode(s["text"])
                     recipe.instructions.append(instruction)
 
-                recipe.file = "../" + str(recipe.dir) + "/" + recipe.default_filename() + ".json"
+                recipe.file = (
+                    "../" + str(recipe.dir) + "/" + recipe.default_filename() + ".json"
+                )
                 recipe.never_saved = False
                 recipe.id = randint(10, 1000)
                 recipe.primary_category = RecipeCategory.OTHER

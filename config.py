@@ -1,5 +1,3 @@
-
-
 APP_TITLE = "Malcolm & Ellie's Recipes"
 APP_ICON = "resources/images/dot.png"
 

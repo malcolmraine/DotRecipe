@@ -1,5 +1,3 @@
-
-
 class RecipeInstruction(object):
     def __init__(self, text="New instruction"):
         self.text = text

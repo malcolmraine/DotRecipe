@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtGui import QPixmap, QImage
-from PyQt5.QtWidgets import (QLabel)
+from PyQt5.QtWidgets import QLabel
 from PIL import Image
 import random
 from support import path_helpers
@@ -60,12 +60,15 @@ class RecipeImage(QLabel):
 
     @staticmethod
     def is_file_allowed(path: str):
-        return path_helpers.endswith_any(path, [
-            "jpg",
-            "jpeg",
-            "png",
-            "webp",
-        ])
+        return path_helpers.endswith_any(
+            path,
+            [
+                "jpg",
+                "jpeg",
+                "png",
+                "webp",
+            ],
+        )
 
     def reset(self):
         ...

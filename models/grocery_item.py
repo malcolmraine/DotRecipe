@@ -13,10 +13,7 @@ class GroceryItem(JsonModel):
         return f"{self._qty.as_fraction_string()} {self.name}"
 
     def to_dict(self):
-        return {
-            "name": self.name,
-            "qty": self._qty.as_fraction_string()
-        }
+        return {"name": self.name, "qty": self._qty.as_fraction_string()}
 
     def from_json(self, s):
         obj = json.loads(s)

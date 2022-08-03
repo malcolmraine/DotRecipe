@@ -41,7 +41,7 @@ class Query(object):
             if len(where) == 2:
                 include_item = bool(rval)
             elif len(where) == 3:
-                include_item = (rval == where[1])
+                include_item = rval == where[1]
             elif len(where) == 4:
                 include_item = self._handle_str_op(rval, where[1], where[2])
 

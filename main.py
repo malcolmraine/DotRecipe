@@ -4,17 +4,21 @@
 import sys
 
 from PyQt5.QtGui import QIcon, QStandardItemModel
-from PyQt5.QtWidgets import (QApplication,
-                             QHBoxLayout,
-                             QVBoxLayout,
-                             QWidget,
-                             QTabWidget,
-                             QTableWidget,
-                             QTableView,
-                             QToolButton,
-                             QComboBox,
-                             QListView,
-                             QTreeView, QMenu, QMainWindow)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QVBoxLayout,
+    QWidget,
+    QTabWidget,
+    QTableWidget,
+    QTableView,
+    QToolButton,
+    QComboBox,
+    QListView,
+    QTreeView,
+    QMenu,
+    QMainWindow,
+)
 from gui.instructions_gui_model import InstructionsGuiModel
 from gui.center_panel import CenterPanelComponent
 from gui.recipe_list_gui_model import RecipeListGuiModel
@@ -89,7 +93,7 @@ class App(QWidget):
         self.recipe_gui_model.refresh()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(config.APP_ICON))
     app.setStyle("Breeze")

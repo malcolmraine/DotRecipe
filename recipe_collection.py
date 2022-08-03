@@ -26,7 +26,7 @@ class Collection(object):
 class RecipeCollection(Collection):
     def __init__(self):
         super().__init__(Recipe)
-        self._data: List[Recipe] = [] # Redeclare to get type hints
+        self._data: List[Recipe] = []  # Redeclare to get type hints
 
     def get_titles(self):
         return [recipe.title for recipe in self._data]
@@ -86,4 +86,3 @@ class RecipeCollection(Collection):
 
     def remove(self, recipe: Recipe) -> bool:
         self._data.remove(recipe)
-
