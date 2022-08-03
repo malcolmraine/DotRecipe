@@ -65,7 +65,7 @@ class JsonModel(object):
         self.updated_at = str(datetime.datetime.now())
         original_contents = ""
 
-        if self.never_saved:
+        if self.never_saved and len(self.file) == 0:
             self.file = str(self.dir) + "/" + self.default_filename() + ".json"
 
         if os.path.exists(self.file):

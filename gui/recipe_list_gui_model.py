@@ -149,6 +149,6 @@ class RecipeListGuiModel(BaseGuiModel):
         self.parent.current_idx = selected_indices[0]
         item = self.model.itemFromIndex(self.parent.current_idx)
         recipe = self.recipes.where("id", item.id).first()
-        self.state.active_recipe = recipe
+        self.set_recipe(recipe)
 
         return recipe

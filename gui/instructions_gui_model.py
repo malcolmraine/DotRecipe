@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import (QGroupBox, QHBoxLayout, QLabel, QVBoxLayout,
 import config
 from support import gui_helpers
 from gui.base_gui_model import BaseGuiModel
-from gui.prints_and_exports import PrintsAndExports
 from support.filter_collection import FilterCollection
 from gui.base_gui_model import GuiState
 from typing import Any

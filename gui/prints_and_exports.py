@@ -36,5 +36,5 @@ class PrintsAndExports(object):
             ...
 
     def handle_export(self):
-        dialog = ExportDialog(self.parent)
+        dialog = ExportDialog(self.parent, self.state)
         dialog.exec()

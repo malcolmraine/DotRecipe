@@ -54,7 +54,7 @@ class RecipeHtml(object):
 
 
 r = Recipe()
-r.from_file("resources/recipes/cobb_salad.json")
+r.from_file("../resources/recipes/cobb_salad.json")
 test = RecipeHtml(r)
 
 

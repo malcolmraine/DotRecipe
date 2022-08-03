@@ -60,7 +60,7 @@ class BaseGuiModel(object):
             ...
 
     def handle_export(self):
-        dialog = ExportDialog()
+        dialog = ExportDialog(self.parent, self.state)
         dialog.exec()
 
     def set_recipe(self, recipe):
