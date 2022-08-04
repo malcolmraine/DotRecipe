@@ -70,10 +70,10 @@ class MealPlanGuiModel(BaseGuiModel):
     def make_meal_combo(self):
         combo = QComboBox()
         combo.addItem("--  Meal  --")
-        combo.addItems([recipe.title for recipe in self.recipes])
+        combo.addItems([recipe.title for recipe in self.state.recipes])
         return combo
 
     def refresh(self):
         for combo in self.meals_combos.items():
             combo[1].clear()
-            combo[1].addItems([recipe.title for recipe in self.recipes])
+            combo[1].addItems([recipe.title for recipe in self.state.recipes])

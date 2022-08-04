@@ -35,7 +35,6 @@ class RecipeImage(QLabel):
     def add_item(self, text):
         if self.is_file_allowed(text):
             self.setPixmap(QPixmap(self.resize_image(text)))
-        print(text)
 
     def resize_image(self, path: str):
         path = path_helpers.convert_unc(path)

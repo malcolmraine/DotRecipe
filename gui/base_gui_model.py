@@ -38,10 +38,10 @@ class GuiState(object):
         self.active_recipe = None
         self.active_meal_plan = None
         self.grocery_list = GroceryList()
+        self.recipes = FilterCollection()
 
 
 class BaseGuiModel(object):
-    recipes = FilterCollection()
     state = GuiState()
 
     def __init__(self, parent):

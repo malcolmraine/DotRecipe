@@ -12,7 +12,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QStandardItem
 import glob
-
+from PyQt5.QtCore import Qt, QModelIndex
+from PyQt5.QtGui import QStandardItemModel
 import config
 from models.recipe import Recipe
 from support import gui_helpers
@@ -22,6 +23,8 @@ from gui.meal_plan_gui_model import MealPlanGuiModel
 from gui.emg_base import EMGTreeView, EMGMessageBox
 from support.filter_collection import FilterCollection
 from gui.bubble_notification import ToastNotification
+from gui.base_gui_model import GuiState
+from typing import Any
 
 
 class RecipeListItem(QStandardItem):
@@ -29,6 +32,38 @@ class RecipeListItem(QStandardItem):
         super().__init__()
         self.id = recipe.id
         self.setText(recipe.title)
+        self.setEditable(True)
+        self.setSelectable(True)
+
+
+class RecipeItemModel(QStandardItemModel):
+    def __init__(self, parent, headers, state: GuiState):
+        super().__init__(0, len(headers), parent)
+        self.state = state
+
+        for idx, header in enumerate(headers):
+            self.setHeaderData(idx, Qt.Horizontal, header)
+
+    def setData(self, index: QModelIndex, value: Any, role: int = Qt.EditRole) -> bool:
+        item = self.itemFromIndex(index)
+        recipe = self.state.recipes.where("id", item.id).first()
+
+        if recipe is not None:
+            if index.column() == 0:
+                recipe.title = value
+            elif index.column() == 1:
+                if value in [e.value for e in RecipeCategory]:
+                    recipe.primary_category = RecipeCategory(value)
+                else:
+                    recipe.primary_category = RecipeCategory.DEFAULT
+
+            return super(RecipeItemModel, self).setData(
+                index, recipe.primary_category.value, role
+            )
+        else:
+            return super(RecipeItemModel, self).setData(
+                index, value, role
+            )
 
 
 class RecipeListGuiModel(BaseGuiModel):
@@ -53,9 +88,10 @@ class RecipeListGuiModel(BaseGuiModel):
         self.save_recipe_button.clicked.connect(self.save_recipe)
         self.delete_recipe_button.clicked.connect(self.delete_recipe)
 
-        self.model = gui_helpers.create_treeview_model(
-            self.parent, ["Name", "Category"]
-        )
+        self.model = RecipeItemModel(self.parent, ["Name", "Category"], self.state)
+        # self.model = gui_helpers.create_treeview_model(
+        #     self.parent, ["Name", "Category"]
+        # )
 
         self.list_layout = QVBoxLayout()
         self.recipe_list_head_layout = QHBoxLayout()
@@ -102,10 +138,11 @@ class RecipeListGuiModel(BaseGuiModel):
                 recipe = Recipe()
                 recipe.from_json(file.read())
                 recipe.file = path
-                self.recipes.append(recipe)
+                self.state.recipes.append(recipe)
                 self.active_recipes.append(recipe)
                 print("Loading recipe - ", [recipe.title, recipe.image])
         self.parent.refresh()
+        self.refresh()
         self.list_view.resizeColumnToContents(0)
         self.list_view.resizeColumnToContents(1)
 
@@ -118,14 +155,14 @@ class RecipeListGuiModel(BaseGuiModel):
                 recipe_category not in RecipeCategory
                 or recipe_category == RecipeCategory.DEFAULT
             ):
-                self.active_recipes.extend([recipe for recipe in self.recipes])
+                self.active_recipes.extend([recipe for recipe in self.state.recipes])
             else:
-                for recipe in self.recipes:
+                for recipe in self.state.recipes:
                     if recipe.primary_category == recipe_category:
                         self.active_recipes.append(recipe)
         except:
             print("Error in selecting recipe category")
-            self.active_recipes.extend([recipe for recipe in self.recipes])
+            self.active_recipes.extend([recipe for recipe in self.state.recipes])
 
         self.refresh()
 
@@ -140,9 +177,9 @@ class RecipeListGuiModel(BaseGuiModel):
     def new_recipe(self):
         recipe = Recipe()
         recipe.title = config.DEFAULT_RECIPE_TITLE
-        recipe.id = self.recipes.max("id") + 1
+        recipe.id = self.state.recipes.max("id") + 1
         recipe.primary_category = RecipeCategory.DEFAULT
-        self.recipes.insert(0, recipe)
+        self.state.recipes.insert(0, recipe)
         self.model.insertRow(0, RecipeListItem(recipe))
         self.model.setData(self.model.index(0, 0), recipe.title)
         self.model.setData(self.model.index(0, 1), recipe.primary_category.value)
@@ -164,7 +201,7 @@ class RecipeListGuiModel(BaseGuiModel):
         selected_indices = self.list_view.selectedIndexes()
         self.parent.current_idx = selected_indices[0]
         item = self.model.itemFromIndex(self.parent.current_idx)
-        recipe = self.recipes.where("id", item.id).first()
+        recipe = self.state.recipes.where("id", item.id).first()
         self.set_recipe(recipe)
 
         return recipe

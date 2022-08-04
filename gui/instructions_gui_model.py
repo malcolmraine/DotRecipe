@@ -36,8 +36,6 @@ class InstructionItemModel(QStandardItemModel):
         recipe = self.state.active_recipe
         instruction = recipe.instructions[index.row()]
 
-        print(value)
-
         if str(value)[0].isnumeric():
             parts = self.number_rgx.findall(str(value))
             if len(parts) > 0:
@@ -110,7 +108,6 @@ class InstructionsGuiModel(BaseGuiModel):
 
     def refresh(self):
         self.clear_listview_rows()
-        print("Active recipe: ")
         for idx, instruction in enumerate(self.state.active_recipe.instructions):
             self.insert_row_at_end(instruction)
 
