@@ -97,11 +97,13 @@ class FilterCollection(object):
     def __copy__(self):
         return self.__class__(deepcopy(self.data))
 
-    def sort(self, attr=None):
-        if attr is None:
+    def sort(self, key=None):
+        if key is None:
             self.data.sort()
+        elif callable(key):
+            self.data.sort(key=key)
         else:
-            self.data.sort(key=lambda item: getattr(item, attr))
+            self.data.sort(key=lambda item: getattr(item, key))
 
     def to_list(self):
         return self.data
