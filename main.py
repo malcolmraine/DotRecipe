@@ -84,7 +84,6 @@ class App(QWidget):
         self.showMaximized()
 
     def load_active_recipe(self):
-        self.recipe_gui_model.get_selected_recipe()
         self.instructions_gui_model.refresh()
         self.ingredients_gui_model.refresh()
 

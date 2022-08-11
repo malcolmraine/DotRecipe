@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtGui import QIcon, QStandardItemModel
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QItemSelectionModel
 from PyQt5 import QtGui
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import (
@@ -29,6 +29,8 @@ import os
 class EMGTreeView(QTreeView):
     def __init__(self):
         super().__init__()
+        self.setSelectionMode(self.SingleSelection)
+        self.setSelectionBehavior(self.SelectRows)
 
     def contextMenuEvent(self, event: QtGui.QContextMenuEvent) -> None:
         menu = QMenu(self)

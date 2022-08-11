@@ -43,6 +43,7 @@ class GuiState(object):
 
 class BaseGuiModel(object):
     state = GuiState()
+    current_row = -1
 
     def __init__(self, parent):
         # self.active_recipe = self.state.active_recipe
@@ -74,9 +75,11 @@ class BaseGuiModel(object):
         dialog = ExportDialog(self.parent, self.state)
         dialog.exec()
 
-    def set_recipe(self, recipe):
+    def set_recipe(self, recipe, refresh=True):
         self.state.active_recipe = recipe
-        self.refresh()
+
+        if refresh:
+            self.refresh()
 
     def refresh(self):
         raise NotImplementedError()
