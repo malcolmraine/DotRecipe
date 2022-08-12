@@ -44,9 +44,15 @@ class Quantity(object):
 
     def __truediv__(self, other):
         if isinstance(other, Quantity):
-            result = Quantity(self._qty / other.qty, self._unit)
+            if other.qty == 0:
+                result = Quantity(self._qty, self._unit)
+            else:
+                result = Quantity(self._qty / other.qty, self._unit)
         else:
-            result = Quantity(self._qty / other, self._unit)
+            if other == 0:
+                result = Quantity(self._qty, self._unit)
+            else:
+                result = Quantity(self._qty / other, self._unit)
         result.mode = self.mode
         return result
 
@@ -93,7 +99,7 @@ class Quantity(object):
     @staticmethod
     def float_to_fraction(f: float) -> str:
         frac, whole = math.modf(f)
-        frac = Fraction(frac).limit_denominator()
+        frac = Fraction(frac).limit_denominator(10)
 
         if frac == 0:
             return str(int(whole))
@@ -114,7 +120,7 @@ class Quantity(object):
         return s.isnumeric() and "." not in s
 
     def _from_nl_string(self, s: str):
-        parts = s.split(" ")
+        parts = trim(s.split(" "))
         whole = 0
         decimal = 0
         unit = ""
@@ -131,7 +137,8 @@ class Quantity(object):
             elif part.isnumeric():
                 whole = int(part)
             elif "/" in part:
-                decimal = int(part.split("/")[0]) / int(part.split("/")[1])
+                numerator, denominator = part.split("/")
+                decimal = int(numerator) / int(denominator)
             elif (
                 idx == len(parts) - 1
                 and "/" not in part
@@ -143,53 +150,6 @@ class Quantity(object):
         self.unit = UnitFactory.create(unit)
         self.qty = whole + decimal
         return self.qty, self.unit.value
-
-    def _from_nl_string_old(self, s: str):
-        """
-        Parse from a string that follows a set format.
-
-        [int|float]
-
-        :param s:
-        :return:
-        """
-        # Convert all whitespace to " "
-        s = s.replace("\t", "").replace("\n", " ").replace("\r", " ")
-        s = trim(s.lower())
-        qty_set = False
-
-        if self.is_float_str(s):
-            if not qty_set:
-                self.qty = float(s)
-                qty_set = True
-            self.unit = Unit.DEFAULT
-        else:
-
-            # Convert to lowercase and split at each space character
-            parts = trim(s.lower().split(" "))
-            qty_str = parts[0]
-
-            if self.is_float_str(qty_str):
-                self.qty = float(qty_str)
-            else:
-
-                if len(parts) > 1 and "/" in parts[1]:
-                    qty_str += " " + parts[1]
-
-            if len(parts) > 2:
-                unit_str = " ".join(parts[2:])
-            elif not parts[-1].isnumeric():
-                unit_str = parts[-1]
-            else:
-                unit_str = ""
-
-            if not qty_set:
-                self.qty = Quantity.fraction_to_float(qty_str)
-                qty_set = True
-
-            self.unit = UnitFactory.create(unit_str)
-
-            return Quantity.fraction_to_float(qty_str), unit_str
 
     def from_nl_string(self, s: str):
         self._base_display_str = s
@@ -221,6 +181,7 @@ class Quantity(object):
 
 def convert_up(qty: Quantity):
     conversions = {
+        # How many, per, unit
         Unit.TSP: (1, 0.33333, Unit.TBSP),
         Unit.TBSP: (4, 0.25, Unit.CUP),
         Unit.CUP: (2, 1, Unit.PINT),
@@ -237,7 +198,7 @@ def convert_up(qty: Quantity):
         return qty
     else:
         conversion_factor = conversion[1]
-        new_qty = qty.qty / conversion[0]
+        new_qty = qty.qty / conversion_factor
         if new_qty - int(new_qty) == 0:
             return convert_up(Quantity(new_qty * conversion_factor, conversion[2]))
         else:
@@ -246,11 +207,12 @@ def convert_up(qty: Quantity):
 
 def convert_down(qty: Quantity):
     conversions = {
-        Unit.TSP: (0.333, 1, Unit.TBSP),
-        Unit.TBSP: (0.25, 4, Unit.CUP),
-        Unit.CUP: (1, 2, Unit.PINT),
-        Unit.PINT: (1, 2, Unit.QUART),
-        Unit.QUART: (1, 4, Unit.GALLON),
+        Unit.TSP: None,
+        Unit.TBSP: (1, 4, Unit.TSP),
+        Unit.CUP: (1, 16, Unit.TBSP),
+        Unit.PINT: (1, 2, Unit.CUP),
+        Unit.QUART: (1, 2, Unit.PINT),
+        Unit.GALLON: (1, 4, Unit.QUART),
         Unit.POUND: (1, 16, Unit.OUNCE),
     }
     conversion = conversions.get(qty.unit, None)
@@ -261,17 +223,17 @@ def convert_down(qty: Quantity):
     if qty.qty < conversion[0]:
         return qty
     else:
-        conversion_factor = conversion[1]
-        new_qty = qty.qty / conversion[0]
+        conversion_factor = conversion[0]
+        new_qty = qty.qty / conversion_factor
         if new_qty - int(new_qty) == 0:
-            return convert_up(Quantity(new_qty * conversion_factor, conversion[2]))
-        else:
             return qty
+        else:
+            return convert_down(Quantity(new_qty, conversion[2]))
 
 
-# test = Quantity(65, Unit.TBSP)
-#
-# print(convert_up(test))
+test = Quantity(0.76, Unit.GALLON)
+
+print(convert_down(test))
 #
 
 

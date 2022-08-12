@@ -56,7 +56,7 @@
     ],
     "est_prep_time": 0,
     "est_cook_time": 0,
-    "default_serving_qty": "",
+    "default_serving_qty": 1,
     "notes": "",
     "image": "resources/images/marinated_grilled_shrimp.jpg",
     "instructions": [

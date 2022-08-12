@@ -15,7 +15,7 @@ class Recipe(JsonModel):
         self.ingredients = FilterCollection()
         self.est_prep_time = 0
         self.est_cook_time = 0
-        self.default_serving_qty = 1
+        self._default_serving_qty = 1
         self.notes = ""
         self.image = ""
         self.instructions = FilterCollection()
@@ -24,6 +24,17 @@ class Recipe(JsonModel):
         self.primary_category = None
         self.id = None
         self.dir = "resources/recipes"
+
+    @property
+    def default_serving_qty(self):
+        return self._default_serving_qty
+
+    @default_serving_qty.setter
+    def default_serving_qty(self, value):
+        if not value:
+            self._default_serving_qty = 1
+        else:
+            self._default_serving_qty = int(value)
 
     def default_filename(self):
         if self.title:

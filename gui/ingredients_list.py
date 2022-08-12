@@ -23,7 +23,7 @@ import config
 from gui.emg_base import EMGLineEdit, EMGTreeView, EMGRadioButton
 from typing import Any
 from models.ingredient import Ingredient
-from models.quantity import Quantity, convert_up
+from models.quantity import Quantity, convert_up, convert_down
 from gui.bubble_notification import ToastNotification
 
 AMOUNT_COL_IDX = 0
@@ -49,8 +49,13 @@ class IngredientItemModel(QStandardItemModel):
         retval = False
 
         if col == AMOUNT_COL_IDX:
+            old_qty = ingredient.qty.qty
             ingredient.qty.from_nl_string(value)
-            formatted = convert_up(ingredient.qty)
+
+            if old_qty < ingredient.qty.qty:
+                formatted = convert_up(ingredient.qty)
+            else:
+                formatted = convert_down(ingredient.qty)
             value = formatted.as_fraction_string()
             # retval = super(IngredientItemModel, self).setData(index, formatted.as_fraction_string(), role)
         else:
@@ -91,6 +96,7 @@ class IngredientItemModel(QStandardItemModel):
 class IngredientsList(BaseGuiModel):
     def __init__(self, parent):
         super().__init__(parent)
+        self._disable_effects = False
 
         self.model = IngredientItemModel(
             parent, ["Qty", "Ingredient", "Notes"], self.state
@@ -136,8 +142,9 @@ class IngredientsList(BaseGuiModel):
         self.increment_servings_btn.setIcon(get_icon("plus.png"))
         self.increment_servings_btn.clicked.connect(self.increment_servings)
         self.servings_line_edit = EMGLineEdit(
-            28, 35, "center", config.DEFAULT_SERVINGS_COUNT
+            28, 35, "center", str(config.DEFAULT_SERVINGS_COUNT)
         )
+        self.servings_line_edit.textChanged.connect(self.update_servings)
         self.servings_layout.addWidget(self.decrement_servings_btn)
         self.servings_layout.addWidget(self.servings_line_edit)
         self.servings_layout.addWidget(self.increment_servings_btn)
@@ -173,28 +180,57 @@ class IngredientsList(BaseGuiModel):
 
         return list_view
 
+    def _increment_servings(self, current_servings, new_servings):
+        if self.state.active_recipe:
+            self.state.active_recipe.default_serving_qty = new_servings
+
+            for ingredient in self.state.active_recipe.ingredients:
+                ingredient.qty = (ingredient.qty / current_servings) * new_servings
+            self.refresh()
+
     def increment_servings(self):
+        if self._disable_effects:
+            return
+
         current_servings = int(self.servings_line_edit.text())
         new_servings = current_servings + 1
+        self._disable_effects = True
         self.servings_line_edit.setText(str(new_servings))
-        self.state.active_recipe.default_serving_qty = new_servings
+        self._disable_effects = False
+        self._increment_servings(current_servings, new_servings)
 
-        for ingredient in self.state.active_recipe.ingredients:
-            ingredient.qty = (ingredient.qty / current_servings) * new_servings
-        self.refresh()
+    def _decrement_servings(self, current_servings, new_servings):
+        if self.state.active_recipe:
+            self.state.active_recipe.default_serving_qty = new_servings
+
+            for ingredient in self.state.active_recipe.ingredients:
+                ingredient.qty = (ingredient.qty / current_servings) * new_servings
+            self.refresh()
 
     def decrement_servings(self):
+        if self._disable_effects:
+            return
         current_servings = int(self.servings_line_edit.text())
         new_servings = current_servings - 1
 
         if new_servings < 1:
             new_servings = 1
+        self._disable_effects = True
         self.servings_line_edit.setText(str(new_servings))
-        self.state.active_recipe.default_serving_qty = new_servings
+        self._disable_effects = False
+        self._decrement_servings(current_servings, new_servings)
 
-        for ingredient in self.state.active_recipe.ingredients:
-            ingredient.qty = (ingredient.qty / current_servings) * new_servings
-        self.refresh()
+    def update_servings(self):
+        if self.state.active_recipe:
+            current_servings = int(self.state.active_recipe.default_serving_qty)
+            new_servings = current_servings - 1
+
+            if new_servings > current_servings:
+                self._increment_servings(current_servings, new_servings)
+            elif new_servings < current_servings:
+                self._decrement_servings(current_servings, new_servings)
+            else:
+                return
 
     def add_ingredient(self):
         ingredient = Ingredient()
@@ -215,12 +251,16 @@ class IngredientsList(BaseGuiModel):
             self.insert_row_at_end(
                 [ingredient.formatted_amount(), ingredient.name, ingredient.description]
             )
+        self._disable_effects = True
         self.servings_line_edit.setText(
             str(self.state.active_recipe.default_serving_qty)
         )
+        self._disable_effects = False
         self.list_view.resizeColumnToContents(1)
         self.list_view.resizeColumnToContents(2)
 
     def clear_listview_rows(self):
         self.model.removeRows(0, self.model.rowCount())
-        self.servings_line_edit.setText("0")
+        self._disable_effects = True
+        self.servings_line_edit.setText("1")
+        self._disable_effects = False

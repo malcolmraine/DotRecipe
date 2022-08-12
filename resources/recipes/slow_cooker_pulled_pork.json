@@ -1,37 +1,37 @@
 {
     "metadata": {
         "created_at": "2022-07-26 22:57:20.391127",
-        "updated_at": "2022-07-26 22:57:20.391161"
+        "updated_at": "2022-08-10 21:17:31.264763"
     },
     "id": 3,
     "title": "Slow Cooker Pulled Pork",
     "description": "",
-    "category": "",
+    "category": "Other",
     "ingredients": [
         {
             "name": "Pork Shoulder",
             "description": "",
-            "qty": "4 lbs"
+            "qty": "0 "
         },
         {
             "name": "Apple cider vinegar",
             "description": "",
-            "qty": "1 cup"
+            "qty": " 1/2 gal"
         },
         {
             "name": "Black pepper",
             "description": "",
-            "qty": "1 tbsp"
+            "qty": "2 gal"
         },
         {
             "name": "Kosher salt",
             "description": "",
-            "qty": "1 tbsp"
+            "qty": "2 gal"
         }
     ],
     "est_prep_time": 0,
     "est_cook_time": 0,
-    "default_serving_qty": 1,
+    "default_serving_qty": 2,
     "notes": "",
     "image": "",
     "instructions": [],

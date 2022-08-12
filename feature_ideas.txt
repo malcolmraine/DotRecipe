@@ -3,6 +3,6 @@
     - or a button to add a recipe for a day
 
 - # of servings per recipe - DONE
-- Converting ingredient amounts per # of servings - DONE
+- Converting ingredient amounts per # of servings - IN PROGRESS
 
 - need to keep state for previous recipes when switchign between them
