@@ -15,9 +15,14 @@ class Query(object):
     def __init__(self, data: list or FilterCollection):
         self.data = FilterCollection(data)
         self._wheres = []
+        self._selects = []
 
     def _handle_str_op(self, rval, op, lval):
         return self.op_funcs.get(op, lambda x, y: False)(rval, lval)
+
+    def select(self, *args):
+        self._selects.extend(args)
+        return self
 
     def where(self, *args):
         self._wheres.append([*args, False])
@@ -52,13 +57,28 @@ class Query(object):
 
         return results
 
+    def _apply_selects(self, collection: FilterCollection) -> dict or FilterCollection:
+        if len(self._selects) == 0:
+            return collection
+
+        results = []
+
+        for item in collection:
+            result = dict()
+            for attr in self._selects:
+                result[attr] = getattr(item, attr)
+
+            results.append(result)
+
+        return results
+
     def get(self) -> FilterCollection:
         results = self.data
 
         for where in self._wheres:
             results = self._apply_where(results, where)
 
-        return results
+        return self._apply_selects(results)
 
     def exists(self) -> bool:
         return not self.get().empty()
@@ -96,6 +116,29 @@ class FilterCollection(object):
 
     def __copy__(self):
         return self.__class__(deepcopy(self.data))
+
+    def __add__(self, other):
+        result = self.__copy__()
+        result.extend(other)
+        return result
+
+    def __truediv__(self, other):
+        result = FilterCollection()
+
+        for item in other:
+            if item in self:
+                result.append(item)
+
+        return result
+
+    def unique(self):
+        result = FilterCollection()
+
+        for item in self:
+            if item not in result:
+                result.append(item)
+
+        return result
 
     def sort(self, key=None):
         if key is None:
@@ -152,3 +195,14 @@ class FilterCollection(object):
             return current_max_item
         else:
             return current_max_value
+
+
+class Test(object):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+
+a = FilterCollection([1, 2, 3, 3])
+print(a.unique())
