@@ -1,30 +1,15 @@
-from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMainWindow, QPushButton
+from PyQt5.QtCore import (
+    Qt,
+)
+from PyQt5.QtWidgets import QDialog
 from PyQt5.QtWidgets import (
-    QApplication,
     QHBoxLayout,
     QVBoxLayout,
-    QWidget,
-    QTabWidget,
-    QTableWidget,
-    QTableView,
-    QToolButton,
     QComboBox,
-    QListView,
-    QTreeView,
-    QGroupBox,
 )
-from PyQt5.QtCore import (
-    QDate,
-    QDateTime,
-    QRegExp,
-    QSortFilterProxyModel,
-    QTime,
-    Qt,
-    QEvent,
-    QObject,
-)
-from support import gui_helpers
+
 from gui.bubble_notification import ToastNotification
+from support import gui_helpers
 
 
 class ExportDialog(QDialog):

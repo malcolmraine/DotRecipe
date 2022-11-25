@@ -1,29 +1,21 @@
-import sys
 from typing import Dict
-from PyQt5.QtGui import QIcon, QStandardItemModel
+from typing import Dict
+
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtWidgets import (
-    QApplication,
     QHBoxLayout,
     QVBoxLayout,
-    QWidget,
-    QTabWidget,
-    QTableWidget,
     QTableView,
-    QToolButton,
     QComboBox,
-    QListView,
-    QTreeView,
-    QGroupBox,
 )
 
 # from gui.instructions_gui_model import InstructionsGuiModel
 # from gui.ingredients_gui_model import IngredientsGuiModel
 # from gui.recipe_list_gui_model import RecipeListGuiModel
 import config
-from support import gui_helpers
-import os
 from gui.base_gui_model import BaseGuiModel
+from support import gui_helpers
 
 
 class MealPlanGuiModel(BaseGuiModel):

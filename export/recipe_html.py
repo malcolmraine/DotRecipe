@@ -1,9 +1,10 @@
-import dominate
-from dominate.tags import *
-from models.recipe import Recipe
-import pdfkit
-import os
 import base64
+
+import dominate
+import pdfkit
+from dominate.tags import *
+
+from models.recipe import Recipe
 
 
 class RecipeHtml(object):

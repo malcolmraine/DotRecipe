@@ -1,9 +1,9 @@
-from support.string_helpers import trim, condense_ws
-from enum import Enum
-from fractions import Fraction
 import math
-from models.unit import Unit, UnitFactory
+from fractions import Fraction
 from typing import Union
+
+from models.unit import Unit, UnitFactory
+from support.string_helpers import trim, condense_ws
 
 
 class Quantity(object):

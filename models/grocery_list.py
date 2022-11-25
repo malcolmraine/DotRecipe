@@ -1,8 +1,8 @@
 import json
 
+from models.ingredient import Ingredient
 from models.json_model import JsonModel
 from support.filter_collection import FilterCollection
-from models.ingredient import Ingredient
 
 
 class GroceryList(JsonModel):

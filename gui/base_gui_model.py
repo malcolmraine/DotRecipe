@@ -1,36 +1,16 @@
-from PyQt5.QtCore import (
-    QDate,
-    QDateTime,
-    QRegExp,
-    QSortFilterProxyModel,
-    Qt,
-    QTime,
-    Qt,
-    QEvent,
-    QObject,
-)
 from PyQt5 import QtPrintSupport
+from PyQt5.QtCore import (
+    Qt,
+)
 from PyQt5.QtWidgets import (
-    QApplication,
     QHBoxLayout,
-    QVBoxLayout,
-    QWidget,
-    QTabWidget,
-    QTableWidget,
-    QTableView,
-    QToolButton,
-    QComboBox,
-    QListView,
-    QTreeView,
     QGroupBox,
 )
-from typing import List
-from models.recipe import Recipe
-from support import gui_helpers
+
 from gui.export_dialog import ExportDialog
-from collections import namedtuple
-from support.filter_collection import FilterCollection
 from models.grocery_list import GroceryList
+from support import gui_helpers
+from support.filter_collection import FilterCollection
 
 
 class GuiState(object):

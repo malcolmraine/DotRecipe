@@ -1,10 +1,10 @@
 import json
-from typing import List, Dict, Tuple
+
 from models.ingredient import Ingredient
 from models.json_model import JsonModel
+from models.recipe_instruction import RecipeInstruction
 from recipe_category import RecipeCategory
 from support.filter_collection import FilterCollection
-from models.recipe_instruction import RecipeInstruction
 
 
 class Recipe(JsonModel):

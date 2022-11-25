@@ -1,9 +1,8 @@
 import datetime
-import os
-import shutil
 import json
-from uuid import uuid4
+import os
 import pathlib
+from uuid import uuid4
 
 
 class JsonModel(object):

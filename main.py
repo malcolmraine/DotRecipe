@@ -3,31 +3,23 @@
 
 import sys
 
-from PyQt5.QtGui import QIcon, QStandardItemModel
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QApplication,
     QHBoxLayout,
     QVBoxLayout,
     QWidget,
     QTabWidget,
-    QTableWidget,
-    QTableView,
-    QToolButton,
-    QComboBox,
-    QListView,
-    QTreeView,
-    QMenu,
     QMainWindow,
 )
-from gui.instructions_gui_model import InstructionsGuiModel
+
+import config
 from gui.center_panel import CenterPanelComponent
-from gui.recipe_list_gui_model import RecipeListGuiModel
+from gui.grocery_list_gui_model import GroceryListGuiModel
+from gui.instructions_gui_model import InstructionsGuiModel
 from gui.meal_plan_gui_model import MealPlanGuiModel
 from gui.meal_plan_list_gui_model import MealPlanListGuiModel
-from gui.grocery_list_gui_model import GroceryListGuiModel
-import config
-from support import gui_helpers
-import os
+from gui.recipe_list_gui_model import RecipeListGuiModel
 
 
 class App(QWidget):

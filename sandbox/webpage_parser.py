@@ -1,14 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from PIL import Image
 import json
 import os
-from models.recipe import Recipe
+from random import randint
+
+import requests
+from PIL import Image
+from bs4 import BeautifulSoup
+
 from models.ingredient import Ingredient
+from models.recipe import Recipe
 from models.recipe_instruction import RecipeInstruction
 from recipe_category import RecipeCategory
-from random import randint
 from support.string_helpers import *
 
 

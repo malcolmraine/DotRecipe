@@ -1,7 +1,3 @@
-import os
-import pathlib
-
-
 def convert_unc(path: str) -> str:
     if path.startswith("file://"):
         return path.replace("file://", "")

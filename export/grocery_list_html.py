@@ -1,5 +1,4 @@
 from models.grocery_list import GroceryList
-from models.ingredient import Ingredient
 
 
 class GroceryListHtml(object):

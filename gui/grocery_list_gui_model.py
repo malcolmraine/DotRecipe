@@ -1,29 +1,14 @@
-import sys
-
-from PyQt5.QtGui import QIcon, QStandardItemModel
-from PyQt5 import QtPrintSupport
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QApplication,
     QHBoxLayout,
     QVBoxLayout,
-    QWidget,
-    QTabWidget,
-    QTableWidget,
-    QTableView,
-    QToolButton,
-    QComboBox,
-    QListView,
     QTreeView,
 )
-from PyQt5.QtCore import Qt
-from gui.instructions_gui_model import InstructionsGuiModel
-from gui.center_panel import CenterPanelComponent
-from gui.recipe_list_gui_model import RecipeListGuiModel
+
 import config
-from support import gui_helpers
-import os
 from gui.base_gui_model import BaseGuiModel
 from gui.bubble_notification import ToastNotification
+from support import gui_helpers
 
 
 class GroceryListGuiModel(BaseGuiModel):
