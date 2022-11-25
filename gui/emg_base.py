@@ -3,7 +3,6 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QTreeView,
     QMenu,
-    QRadioButton,
     QMessageBox,
     QLineEdit,
 )
@@ -37,12 +36,6 @@ class EMGLineEdit(QLineEdit):
             self.setAlignment(Qt.AlignRight)
         elif align == "left":
             self.setAlignment(Qt.AlignLeft)
-
-
-class EMGRadioButton(QRadioButton):
-    def __init__(self, *args, checked=False):
-        super().__init__(*args)
-        self.setChecked(checked)
 
 
 class EMGMessageBox(QMessageBox):

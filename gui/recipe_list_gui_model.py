@@ -20,7 +20,7 @@ from gui.base_gui_model import GuiState
 from gui.bubble_notification import ToastNotification
 from gui.emg_base import EMGTreeView, EMGMessageBox
 from models.recipe import Recipe
-from recipe_category import RecipeCategory
+from models.recipe_category import RecipeCategory
 from support import gui_helpers
 from support.filter_collection import FilterCollection
 

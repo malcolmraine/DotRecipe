@@ -7,13 +7,14 @@ from PyQt5.QtGui import QStandardItemModel, QBrush, QColor
 from PyQt5.QtWidgets import (
     QHBoxLayout,
     QVBoxLayout,
+    QRadioButton
 )
 
 import config
 from gui.base_gui_model import BaseGuiModel
 from gui.base_gui_model import GuiState
 from gui.bubble_notification import ToastNotification
-from gui.emg_base import EMGLineEdit, EMGTreeView, EMGRadioButton
+from gui.emg_base import EMGLineEdit, EMGTreeView
 from models.ingredient import Ingredient
 from models.quantity import Quantity, convert_up, convert_down
 from support.gui_helpers import (
@@ -35,7 +36,7 @@ class IngredientItemModel(QStandardItemModel):
             self.setHeaderData(idx, Qt.Horizontal, header)
 
     def setData(
-        self, index: QtCore.QModelIndex, value: Any, role: int = Qt.EditRole
+            self, index: QtCore.QModelIndex, value: Any, role: int = Qt.EditRole
     ) -> bool:
         # print("Updating ingredients: ", value, index.row(), index.column())
         recipe = self.state.active_recipe
@@ -111,8 +112,8 @@ class IngredientsList(BaseGuiModel):
         self.remove_ingredient_btn.setToolTip(
             config.get_tooltip("remove_ingredient_button")
         )
-        self.metric_units_radio_btn = EMGRadioButton("Metric")
-        self.us_units_radio_btn = EMGRadioButton("US", checked=True)
+        self.metric_units_radio_btn = QRadioButton("Metric", self)
+        self.us_units_radio_btn = QRadioButton("US", self)
         self.us_units_radio_btn.clicked.connect(self.change_to_fraction_pres)
         self.metric_units_radio_btn.clicked.connect(self.change_to_decimal_pres)
         self.add_to_grocery_list_btn = create_tool_button("Add to Grocery List")
