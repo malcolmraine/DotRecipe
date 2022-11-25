@@ -221,16 +221,17 @@ class IngredientsList(BaseGuiModel):
         self._decrement_servings(current_servings, new_servings)
 
     def update_servings(self):
-        if self.state.active_recipe:
-            current_servings = int(self.state.active_recipe.default_serving_qty)
-            new_servings = current_servings - 1
-
-            if new_servings > current_servings:
-                self._increment_servings(current_servings, new_servings)
-            elif new_servings < current_servings:
-                self._decrement_servings(current_servings, new_servings)
-            else:
-                return
+        return
+        # if self.state.active_recipe:
+        #     current_servings = int(self.state.active_recipe.default_serving_qty)
+        #     new_servings = current_servings - 1
+        #
+        #     if new_servings > current_servings:
+        #         self._increment_servings(current_servings, new_servings)
+        #     elif new_servings < current_servings:
+        #         self._decrement_servings(current_servings, new_servings)
+        #     else:
+        #         return
 
     def add_ingredient(self):
         ingredient = Ingredient()

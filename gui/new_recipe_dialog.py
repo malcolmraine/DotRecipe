@@ -8,12 +8,9 @@ from PyQt5.QtWidgets import (
     QTableWidget,
     QTableView,
     QToolButton,
-    QLineEdit,
-    QRadioButton,
     QComboBox,
     QListView,
     QTreeView,
-    QGridLayout,
     QGroupBox,
 )
 from PyQt5.QtCore import (
@@ -25,7 +22,6 @@ from PyQt5.QtCore import (
     Qt,
     QEvent,
     QObject,
-
 )
 from support import gui_helpers
 from gui.bubble_notification import ToastNotification
@@ -37,11 +33,6 @@ class ExportDialog(QDialog):
         self.state = state
         main_layout = QVBoxLayout()
         self.setLayout(main_layout)
-        self.grid = QGridLayout()
-        manual_entry = QLineEdit()
-        self.grid.addItem(manual_entry, 0, 0)
-
-
         self.export_combo = QComboBox()
         self.export_combo.addItems(
             [
@@ -52,9 +43,9 @@ class ExportDialog(QDialog):
         )
         main_layout.addWidget(self.export_combo)
         self.export_btn = gui_helpers.create_tool_button("Export")
-        self.export_btn.clicked.connect(self.export)
+        self.export_btn.clicked.connect(self.handle_create)
         self.cancel_btn = gui_helpers.create_tool_button("Cancel")
-        self.cancel_btn.clicked.connect(self.cancel)
+        self.cancel_btn.clicked.connect(self.handle_cancel)
         self.export_cancel_layout = QHBoxLayout()
         self.export_cancel_layout.addWidget(self.export_btn)
         self.export_cancel_layout.addWidget(self.cancel_btn)
@@ -63,15 +54,8 @@ class ExportDialog(QDialog):
         self.setMinimumWidth(500)
         self.setMinimumHeight(500)
 
-    def export(self):
-        print("Export")
-        if self.state is not None:
-            ToastNotification.show(f"Exported {self.state.active_recipe.title}")
-        self.close()
+    def handle_create(self):
+        ...
 
-    def cancel(self):
-        print("Cancel")
+    def handle_cancel(self):
         self.close()
-
-    def refresh(self):
-        pass

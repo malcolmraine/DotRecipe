@@ -179,15 +179,27 @@ class Quantity(object):
         return f"{self.float_to_fraction(self.qty)} {self.unit.fullname()}"
 
 
+"""
+From    To
+-------------------
+3 tsp           1 tbsp
+4 tbsp          1/4 cup
+2 cup           1 pint
+2 pint          1 quart
+2 quart         1 half gallon
+2 half gallon   1 gallon
+
+"""
+
 def convert_up(qty: Quantity):
     conversions = {
         # How many, per, unit
-        Unit.TSP: (1, 0.33333, Unit.TBSP),
+        Unit.TSP: (3, 1, Unit.TBSP),
         Unit.TBSP: (4, 0.25, Unit.CUP),
         Unit.CUP: (2, 1, Unit.PINT),
         Unit.PINT: (2, 1, Unit.QUART),
-        Unit.QUART: (4, 1, Unit.GALLON),
-        Unit.OUNCE: (16, 1, Unit.POUND),
+        Unit.QUART: (2, 0.5, Unit.GALLON),
+        Unit.OUNCE: (4, 0.25, Unit.POUND),
     }
     conversion = conversions.get(qty.unit, None)
 

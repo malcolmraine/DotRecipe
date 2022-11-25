@@ -1,7 +1,7 @@
 {
     "metadata": {
         "created_at": "2022-07-27 00:32:02.892806",
-        "updated_at": "2022-07-27 00:32:02.892824"
+        "updated_at": "2022-09-18 21:09:35.305975"
     },
     "id": 454,
     "title": "Thai Cucumber Salad with Udon Noodles",
@@ -9,64 +9,64 @@
     "category": "Other",
     "ingredients": [
         {
-            "name": "white sugar",
+            "name": "White sugar",
             "description": "",
-            "qty": " 1/2 cup"
+            "qty": "11 1/2 gal"
         },
         {
-            "name": "water",
+            "name": "Water",
             "description": "",
-            "qty": " 1/4 cup"
+            "qty": "5 3/4 gal"
         },
         {
-            "name": "soy sauce",
+            "name": "Soy sauce",
             "description": "",
-            "qty": "1 tbsp"
+            "qty": "23 gal"
         },
         {
-            "name": "ground ginger",
+            "name": "Ground ginger",
             "description": "",
-            "qty": "1 tsp"
+            "qty": "23 tsp"
         },
         {
-            "name": "garlic, crushed",
+            "name": "Garlic, crushed",
             "description": "",
-            "qty": "1 clove"
+            "qty": "0 "
         },
         {
-            "name": "salt",
+            "name": "Salt",
             "description": "",
-            "qty": " 1/2 tsp"
+            "qty": "11 1/2 tsp"
         },
         {
-            "name": "rice vinegar",
+            "name": "Rice vinegar",
             "description": "",
-            "qty": " 1/2 cup"
+            "qty": "11 1/2 gal"
         },
         {
-            "name": "udon noodles, or more to taste",
+            "name": "Udon noodles, or more to taste",
             "description": "",
-            "qty": "8 ounces"
+            "qty": "0 "
         },
         {
-            "name": "cucumbers, sliced",
+            "name": "Cucumbers, sliced",
             "description": "",
-            "qty": "2 English"
+            "qty": "0 "
         },
         {
-            "name": "shallot, thinly sliced",
+            "name": "Shallot, thinly sliced",
             "description": "",
-            "qty": "1 large"
+            "qty": "0 "
         },
         {
-            "name": "bell pepper, thinly sliced",
+            "name": "Bell pepper, thinly sliced",
             "description": "",
-            "qty": "0.5 red"
+            "qty": "0 "
         },
         {
             "name": "Thai chile pepper, minced",
             "description": "",
-            "qty": "0.5 small"
+            "qty": "0 "
         }
     ],
     "est_prep_time": 0,
@@ -75,9 +75,9 @@
     "notes": "",
     "image": "resources/images/thai_cucumber_salad_with_udon_noodles.jpg",
     "instructions": [
-        "Combine sugar, water, soy sauce, ginger, garlic, and salt in a small saucepan. Bring to a boil, stirring until sugar and salt are dissolved, about 5 minutes. Remove from heat and cool slightly, about 5 minutes. Stir in rice vinegar to make dressing.\n",
+        "Combine sugar, water, soy sauce, ginger, garlic, and salt in a small saucepan. Bring to a boil, stirring until sugar and salt are dissolved, about 5 minutes. Remove from heat and cool slightly, about 5 minutes. Stir in rice vinegar to make dressing.",
         "Bring a large pot of water to a boil. Cook udon noodles in boiling water, stirring occasionally, until noodles are tender yet firm to the bite, 10 to 12 minutes. Drain. Rinse with cold water and drain.\n",
-        "Transfer udon to a large bowl. Add cucumbers, shallot, red bell pepper, and Thai chile pepper. Pour dressing into the bowl; toss until salad is evenly coated. Let stand to marinate, at least 20 minutes, before serving.\n"
+        "Transfer udon to a large bowl.  Add cucumbers,  shallot, red bell pepper, and Thai chile pepper. Pour dressing into the bowl; toss until salad is evenly coated. Let stand to marinate, at least 20 minutes, before serving."
     ],
     "source": "https://www.allrecipes.com/recipe/246562/thai-cucumber-salad-with-udon-noodles/?printview"
 }
