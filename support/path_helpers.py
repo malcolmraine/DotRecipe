@@ -1,7 +1,3 @@
-import os
-import pathlib
-
-
 def convert_unc(path: str) -> str:
     if path.startswith("file://"):
         return path.replace("file://", "")
@@ -16,7 +12,7 @@ def make_resource_path(path: str):
 
 
 def make_image_path(filename: str) -> str:
-    return f"resources/images/{filename}"
+    return f"resources/img/{filename}"
 
 
 def make_icon_path(filename: str) -> str:

@@ -1,4 +1,5 @@
 import sys
+
 from PyQt5.QtCore import (
     QRectF,
     Qt,
@@ -14,8 +15,6 @@ from PyQt5.QtWidgets import (
     QWidget,
     QVBoxLayout,
     QApplication,
-    QLineEdit,
-    QPushButton,
 )
 
 

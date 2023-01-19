@@ -1,14 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from PIL import Image
 import json
 import os
-from models.recipe import Recipe
-from models.ingredient import Ingredient
-from models.recipe_instruction import RecipeInstruction
-from recipe_category import RecipeCategory
 from random import randint
+
+import requests
+from PIL import Image
+from bs4 import BeautifulSoup
+
+from models.ingredient import Ingredient
+from models.recipe import Recipe
+from models.recipe_instruction import RecipeInstruction
+from models.recipe_category import RecipeCategory
 from support.string_helpers import *
 
 
@@ -69,10 +70,10 @@ def all_recipes_parser(soup):
                         handler.write(img_data)
                     resize_image(
                         handler_path,
-                        f"../resources/images/{recipe.title.lower().replace(' ', '_')}.jpg",
+                        f"../resources/img/{recipe.title.lower().replace(' ', '_')}.jpg",
                     )
                     recipe.image = (
-                        f"resources/images/{recipe.title.lower().replace(' ', '_')}.jpg"
+                        f"resources/img/{recipe.title.lower().replace(' ', '_')}.jpg"
                     )
                     os.remove(handler_path)
 

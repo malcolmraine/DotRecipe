@@ -1,32 +1,28 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import glob
+from typing import Any
+
+from PyQt5.QtCore import Qt, QModelIndex
+from PyQt5.QtGui import QStandardItem
+from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtWidgets import (
     QComboBox,
-    QGroupBox,
     QHBoxLayout,
     QLabel,
-QStyledItemDelegate,
-    QTreeView,
     QVBoxLayout,
-    QMessageBox,
-QWidget,
 )
-from PyQt5.QtGui import QStandardItem
-import glob
-from PyQt5.QtCore import Qt, QModelIndex, QItemSelectionModel
-from PyQt5.QtGui import QStandardItemModel
+
 import config
-from models.recipe import Recipe
-from support import gui_helpers
-from recipe_category import RecipeCategory
 from gui.base_gui_model import BaseGuiModel
-from gui.meal_plan_gui_model import MealPlanGuiModel
-from gui.emg_base import EMGTreeView, EMGMessageBox
-from support.filter_collection import FilterCollection
-from gui.bubble_notification import ToastNotification
 from gui.base_gui_model import GuiState
-from typing import Any
+from gui.bubble_notification import ToastNotification
+from gui.emg_base import EMGTreeView, EMGMessageBox
+from models.recipe import Recipe
+from models.recipe_category import RecipeCategory
+from support import gui_helpers
+from support.filter_collection import FilterCollection
 
 
 class RecipeListItem(QStandardItem):

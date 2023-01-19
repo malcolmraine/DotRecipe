@@ -1,29 +1,11 @@
-import sys
-
-from PyQt5.QtGui import QIcon, QStandardItemModel
-from PyQt5.QtCore import Qt, QItemSelectionModel
 from PyQt5 import QtGui
-from PyQt5.QtGui import QCursor
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QApplication,
-    QHBoxLayout,
-    QVBoxLayout,
-    QWidget,
-    QTabWidget,
-    QTableWidget,
-    QTableView,
-    QToolButton,
-    QComboBox,
-    QListView,
     QTreeView,
     QMenu,
-    QRadioButton,
     QMessageBox,
     QLineEdit,
 )
-import config
-from support import gui_helpers
-import os
 
 
 class EMGTreeView(QTreeView):
@@ -54,12 +36,6 @@ class EMGLineEdit(QLineEdit):
             self.setAlignment(Qt.AlignRight)
         elif align == "left":
             self.setAlignment(Qt.AlignLeft)
-
-
-class EMGRadioButton(QRadioButton):
-    def __init__(self, *args, checked=False):
-        super().__init__(*args)
-        self.setChecked(checked)
 
 
 class EMGMessageBox(QMessageBox):

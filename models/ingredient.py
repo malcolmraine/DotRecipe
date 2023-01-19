@@ -1,8 +1,8 @@
 import json
+from copy import deepcopy
 
 from models.json_model import JsonModel
-from models.quantity import Quantity, Unit
-from copy import deepcopy
+from models.quantity import Quantity
 
 
 class Ingredient(JsonModel):

@@ -1,24 +1,12 @@
-from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (
-    QGroupBox,
-    QHBoxLayout,
-    QTreeView,
     QVBoxLayout,
-    QRadioButton,
-    QLineEdit,
 )
-from support.gui_helpers import (
-    create_tool_button,
-    create_label,
-    create_treeview_model,
-    get_icon,
-)
-from gui.base_gui_model import BaseGuiModel
-from gui.recipe_image import RecipeImage
+
 import config
-from gui.emg_base import EMGLineEdit, EMGTreeView, EMGRadioButton
+from gui.base_gui_model import BaseGuiModel
 from gui.ingredients_list import IngredientsList
+from gui.recipe_image import RecipeImage
 
 
 class CenterPanelComponent(BaseGuiModel):

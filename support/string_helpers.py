@@ -1,4 +1,5 @@
-from typing import List, Union, Iterable
+from typing import Iterable
+
 import unicodedata
 
 

@@ -1,7 +1,7 @@
 APP_TITLE = "Malcolm & Ellie's Recipes"
-APP_ICON = "resources/images/dot.png"
+APP_ICON = "resources/img/dot.png"
 
-DEFAULT_IMAGE_PATH = "resources/images/default_not_found.png"
+DEFAULT_IMAGE_PATH = "resources/img/default_not_found.png"
 RECIPE_IMAGE_SIZE = (480, 320)
 
 DEFAULT_RECIPE_TITLE = "Untitled"

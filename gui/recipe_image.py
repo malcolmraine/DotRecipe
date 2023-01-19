@@ -1,13 +1,10 @@
-# !/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
+from PIL import Image
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QLabel
-from PIL import Image
-import random
-from support import path_helpers
+
 import config
-from PyQt5.QtCore import Qt
+from support import path_helpers
 
 
 class RecipeImage(QLabel):

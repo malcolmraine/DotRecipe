@@ -1,10 +1,12 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import re
+from typing import Any
+
 from PyQt5.QtCore import Qt, QModelIndex
 from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtWidgets import (
-    QGroupBox,
     QHBoxLayout,
     QLabel,
     QVBoxLayout,
@@ -13,13 +15,11 @@ from PyQt5.QtWidgets import (
 )
 
 import config
-from support import gui_helpers
 from gui.base_gui_model import BaseGuiModel
-from support.filter_collection import FilterCollection
 from gui.base_gui_model import GuiState
-from typing import Any
 from models.recipe_instruction import RecipeInstruction
-import re
+from support import gui_helpers
+from support.filter_collection import FilterCollection
 
 
 class InstructionItemModel(QStandardItemModel):

@@ -1,6 +1,7 @@
+import json
+
 from models.json_model import JsonModel
 from models.quantity import Quantity
-import json
 
 
 class GroceryItem(JsonModel):
